@@ -19,4 +19,16 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/home', 'HomeController@index')->name('home');
+
+//Admin routes
+Route::group(['prefix'=>'admin','middleware' =>['admin','auth'],'namespace'=>'Admin'], function(){
+    // Route::get('dashboard',[UserController::class,'index'])->name('admin.dashboard');
+    Route::get('dashboard','AdminController@index')->name('admin.dashboard');
+});
+
+
+//User routes
+Route::group(['prefix'=>'user','middleware' =>['user','auth'],'namespace'=>'User'], function(){
+    Route::get('dashboard','UserController@index')->name('user.dashboard');
+});
