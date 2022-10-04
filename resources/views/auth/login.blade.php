@@ -25,18 +25,30 @@
                   <a href="#" class="facebook-sign-in"><i class="fa fa-facebook"></i> Sign In with Facebook</a>
                   <a href="#" class="twitter-sign-in"><i class="fa fa-twitter"></i> Sign In with Twitter</a>
                </div>
-               <form class="register-form outer-top-xs" role="form">
+              
+                <form class="register-form outer-top-xs"  method="POST" action="{{ route('login') }}">
+                    @csrf
                   <div class="form-group">
-                     <label class="info-title" for="exampleInputEmail1">Email Address <span>*</span></label>
-                     <input type="email" class="form-control unicase-form-control text-input" id="exampleInputEmail1" >
+                     <label class="info-title" for="email">Email Address <span>*</span></label>
+                     <input type="email" class="form-control unicase-form-control text-input" id="email" name="email" value="{{ old('email') }}"  autocomplete="email" autofocus >
+                     @error('email')
+                     <span class="invalid-feedback" role="alert">
+                         <strong>{{ $message }}</strong>
+                     </span>
+                    @enderror
                   </div>
                   <div class="form-group">
                      <label class="info-title" for="exampleInputPassword1">Password <span>*</span></label>
-                     <input type="password" class="form-control unicase-form-control text-input" id="exampleInputPassword1" >
+                     <input type="password" class="form-control unicase-form-control text-input" id="exampleInputPassword1"  name="password"  autocomplete="current-password" >
+                     @error('password')
+                     <span class="invalid-feedback" role="alert">
+                         <strong>{{ $message }}</strong>
+                     </span>
+                 @enderror
                   </div>
                   <div class="radio outer-xs">
                      <label>
-                     <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">Remember me!
+                     <input type="radio" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}  >Remember me!
                      </label>
                      <a href="#" class="forgot-password pull-right">Forgot your Password?</a>
                   </div>
