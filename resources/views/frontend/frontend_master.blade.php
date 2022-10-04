@@ -42,20 +42,11 @@
       <div class="body-content outer-top-xs" id="top-banner-and-menu">
          <div class="container">
             <div class="row">
-               <!-- ============================================== SIDEBAR ============================================== -->	
-               <div class="col-xs-12 col-sm-12 col-md-3 sidebar">
-                  <!-- ================================== Left sidebar start ================================== -->
-                  @include("frontend.partials.left_sidebar")
-                  <!-- ================================== Left sidebar end ================================== -->
-                  @include("frontend.partials.left_bottom_sidebar")
-               </div>
-               <!-- /.sidemenu-holder -->
-               <!-- ============================================== SIDEBAR : END ============================================== -->
-               <!-- ============================================== CONTENT ============================================== -->
+
+              {{-- sidebar here --}}
+               
                <div class="col-xs-12 col-sm-12 col-md-9 homebanner-holder">
-                  <!-- ========================================== SECTION – HERO ========================================= -->
-                  @include("frontend.partials.banner_slider")
-                  <!-- ========================================= SECTION – HERO : END ========================================= -->	
+                 
                  
                 @yield("front_content")
                   <!-- ============================================== FEATURED PRODUCTS : END ============================================== -->

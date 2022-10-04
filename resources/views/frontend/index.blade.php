@@ -1,7 +1,16 @@
 @extends('frontend.frontend_master')
 
 @section('front_content')
-  <!-- ============================================== INFO BOXES ============================================== -->
+  <!-- ============================================== SIDEBAR ============================================== -->	
+  <div class="col-xs-12 col-sm-12 col-md-3 sidebar">
+   <!-- ================================== Left sidebar start ================================== -->
+   @include("frontend.partials.left_sidebar")
+   <!-- ================================== Left sidebar end ================================== -->
+   @include("frontend.partials.left_bottom_sidebar")
+</div>
+ 
+ @include("frontend.partials.banner_slider")
+
   <div class="info-boxes wow fadeInUp">
     <div class="info-boxes-inner">
        <div class="row">
