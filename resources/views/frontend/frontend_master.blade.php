@@ -42,10 +42,17 @@
       <div class="body-content outer-top-xs" id="top-banner-and-menu">
          <div class="container">
             <div class="row">
-
-              {{-- sidebar here --}}
-               
-               <div class="col-xs-12 col-sm-12 col-md-9 homebanner-holder">
+               <!-- ============================================== SIDEBAR ============================================== -->	
+               {{-- <div class="col-xs-12 col-sm-12 col-md-3 sidebar">
+                  <!-- ================================== Left sidebar start ================================== -->
+                  @include("frontend.partials.left_sidebar")
+                  <!-- ================================== Left sidebar end ================================== -->
+                  @include("frontend.partials.left_bottom_sidebar")
+               </div> --}}
+               <!-- /.sidemenu-holder -->
+               <!-- ============================================== SIDEBAR : END ============================================== -->
+               <!-- ============================================== CONTENT ============================================== -->
+               {{-- <div class="col-xs-12 col-sm-12 col-md-9 homebanner-holder"> --}}
                  
                  
                 @yield("front_content")

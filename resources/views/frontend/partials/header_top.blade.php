@@ -7,7 +7,22 @@
 					<li><a href="#"><i class="icon fa fa-heart"></i>Wishlist</a></li>
 					<li><a href="#"><i class="icon fa fa-shopping-cart"></i>My Cart</a></li>
 					<li><a href="#"><i class="icon fa fa-check"></i>Checkout</a></li>
-					<li><a href="{{ route('login') }}"><i class="icon fa fa-lock"></i>Login/Register</a></li>
+		 
+						@auth
+						<li><a href="{{ route('user.dashboard') }}" > </i>Dashboard</a> </li>
+						 <li>
+							<a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="icon ion-power"></i> Sign Out</a>
+						 </li>
+						 </a>
+						 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+							@csrf
+						 </form>
+						@else
+						<li><a href="{{ route('login') }}"><i class="icon fa fa-lock"></i>Login/Register</a></li>
+						@endauth
+						
+			 
+					
 				</ul>
 			</div><!-- /.cnt-account -->
 

@@ -8,7 +8,8 @@
    <!-- ================================== Left sidebar end ================================== -->
    @include("frontend.partials.left_bottom_sidebar")
 </div>
- 
+
+<div class="col-xs-12 col-sm-12 col-md-9 homebanner-holder">
  @include("frontend.partials.banner_slider")
 
   <div class="info-boxes wow fadeInUp">

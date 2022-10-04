@@ -29,8 +29,8 @@
                 <form class="register-form outer-top-xs"  method="POST" action="{{ route('login') }}">
                     @csrf
                   <div class="form-group">
-                     <label class="info-title" for="email">Email Address <span>*</span></label>
-                     <input type="email" class="form-control unicase-form-control text-input" id="email" name="email" value="{{ old('email') }}"  autocomplete="email" autofocus >
+                     <label class="info-title" for="email1">Email Address <span>*</span></label>
+                     <input type="email" class="form-control unicase-form-control text-input" id="email1" name="email" value="{{ old('email') }}"  autocomplete="email" autofocus >
                      @error('email')
                      <span class="invalid-feedback" role="alert">
                          <strong>{{ $message }}</strong>
@@ -50,7 +50,12 @@
                      <label>
                      <input type="radio" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}  >Remember me!
                      </label>
-                     <a href="#" class="forgot-password pull-right">Forgot your Password?</a>
+                     @if (Route::has('password.request'))
+                     <a class="forgot-password pull-right" href="{{ route('password.request') }}">
+                        Forgot your Password?
+                     </a>
+                     @endif
+                     {{-- <a href="#" class="forgot-password pull-right">Forgot your Password?</a> --}}
                   </div>
                   <button type="submit" class="btn-upper btn btn-primary checkout-page-button">Login</button>
                </form>
@@ -60,26 +65,48 @@
             <div class="col-md-6 col-sm-6 create-new-account">
                <h4 class="checkout-subtitle">Create a new account</h4>
                <p class="text title-tag-line">Create your new account.</p>
-               <form class="register-form outer-top-xs" role="form">
+               <form class="register-form outer-top-xs"  method="POST" action="{{ route('register') }}">
+                @csrf
                   <div class="form-group">
                      <label class="info-title" for="exampleInputEmail2">Email Address <span>*</span></label>
-                     <input type="email" class="form-control unicase-form-control text-input" id="exampleInputEmail2" >
+                     <input type="email" placeholder="Enter yout email address" class="form-control unicase-form-control text-input" id="exampleInputEmail2"  name="email"   >
+                     @error('email')
+                     <span class="invalid-feedback" role="alert">
+                         <strong>{{ $message }}</strong>
+                      </span>
+                    @enderror
                   </div>
                   <div class="form-group">
-                     <label class="info-title" for="exampleInputEmail1">Name <span>*</span></label>
-                     <input type="email" class="form-control unicase-form-control text-input" id="exampleInputEmail1" >
+                     <label class="info-title" for="name">Name <span>*</span></label>
+                     <input type="text" placeholder="Enter your name" class="form-control unicase-form-control text-input" id="name" name="name" value="{{ old('name') }}">
+                     
+                     @error('name')
+                     <span class="invalid-feedback" role="alert">
+                         <strong>{{ $message }}</strong>
+                     </span>
+                 @enderror
                   </div>
                   <div class="form-group">
-                     <label class="info-title" for="exampleInputEmail1">Phone Number <span>*</span></label>
-                     <input type="email" class="form-control unicase-form-control text-input" id="exampleInputEmail1" >
+                    <label class="info-title" for="phone">Phone Number <span>*</span></label>
+                    <input type="text" name="phone" value="{{ old('phone') }}"  class="form-control unicase-form-control text-input" id="phone" placeholder="Enter your phone number" >
+                    @error('phone')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                    @enderror
+                </div>
+                  <div class="form-group">
+                     <label class="info-title" for="password">Password <span>*</span></label>
+                     <input type="password" placeholder="Enter your password" class="form-control unicase-form-control text-input" name="password" id="password" >
+                     @error('password')
+                     <span class="invalid-feedback" role="alert">
+                         <strong>{{ $message }}</strong>
+                     </span>
+                    @enderror
                   </div>
                   <div class="form-group">
-                     <label class="info-title" for="exampleInputEmail1">Password <span>*</span></label>
-                     <input type="email" class="form-control unicase-form-control text-input" id="exampleInputEmail1" >
-                  </div>
-                  <div class="form-group">
-                     <label class="info-title" for="exampleInputEmail1">Confirm Password <span>*</span></label>
-                     <input type="email" class="form-control unicase-form-control text-input" id="exampleInputEmail1" >
+                     <label class="info-title" for="confirm_password">Confirm Password <span>*</span></label>
+                     <input type="password" placeholder="Re-type password" class="form-control unicase-form-control text-input" id="confirm_password" name="password_confirmation" >
                   </div>
                   <button type="submit" class="btn-upper btn btn-primary checkout-page-button">Sign Up</button>
                </form>
