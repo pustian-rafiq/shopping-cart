@@ -35,4 +35,5 @@ Route::group(['prefix'=>'admin','middleware' =>['admin','auth'],'namespace'=>'Ad
 // =========================User routes=========================================
 Route::group(['prefix'=>'user','middleware' =>['user','auth'],'namespace'=>'User'], function(){
     Route::get('dashboard','UserController@index')->name('user.dashboard');
+    Route::post('update/profile','UserController@UpdateProfile')->name('update.profile');
 });

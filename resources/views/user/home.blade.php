@@ -36,7 +36,7 @@
               <div class="card">
                 <h3 class="text-center"> <span class="text-danger">Hi..!</span> <strong class="text-warning">{{ Auth::user()->name }}</strong> Update Your profile</h3>
                     <div class="card-body">
-                        <form action="" method="POST">
+                        <form action="{{ route('update.profile') }}" method="POST">
                             @csrf
                               <div class="form-group">
                                 <label for="exampleInputEmail1">Name</label>
