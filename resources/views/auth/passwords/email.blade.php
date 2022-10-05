@@ -39,7 +39,7 @@
 							@enderror
 							</div>
 							<button type="submit" class="btn-upper btn btn-primary checkout-page-button"> {{ __('Send Password Reset Link') }}</button>
-							<a href="{{ route('login') }}" class="forgot-password pull-right">Return to login</a>
+							<a href="{{ route('login') }}" class="forgot-password pull-right">Back to login</a>
 
 						</form>
 					</div>
