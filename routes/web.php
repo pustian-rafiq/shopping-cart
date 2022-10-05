@@ -13,22 +13,27 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'Frontend\FrontendController@index');
+
 
 Auth::routes();
 
 // Route::get('/home', 'HomeController@index')->name('home');
 
-//Admin routes
+
+// =========================Frontend routes=========================================
+
+
+
+// =========================Admin routes=========================================
 Route::group(['prefix'=>'admin','middleware' =>['admin','auth'],'namespace'=>'Admin'], function(){
     // Route::get('dashboard',[UserController::class,'index'])->name('admin.dashboard');
     Route::get('dashboard','AdminController@index')->name('admin.dashboard');
 });
 
 
-//User routes
+// =========================User routes=========================================
 Route::group(['prefix'=>'user','middleware' =>['user','auth'],'namespace'=>'User'], function(){
     Route::get('dashboard','UserController@index')->name('user.dashboard');
+    Route::post('update/profile','UserController@UpdateProfile')->name('update.profile');
 });
