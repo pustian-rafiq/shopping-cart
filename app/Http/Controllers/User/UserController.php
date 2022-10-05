@@ -38,4 +38,9 @@ class UserController extends Controller
         return Redirect()->back()->with($notification);
 
     }
+
+      // View image update page
+      public function UpdateImage(){
+        return view('user.image_update');
+    }
 }
