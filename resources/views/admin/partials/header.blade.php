@@ -9,11 +9,11 @@
         <div class="dropdown">
            <a href="" class="nav-link nav-link-profile" data-toggle="dropdown">
            <span class="hidden-md-down"> {{ Auth::user()->name }}</span>
-           <img src="{{ asset('backend/img/img3.jpg')}}" class="wd-32 rounded-circle" alt="">
+           <img src="{{ asset(Auth::user()->photo)}}" class="wd-32 rounded-circle" alt="">
            </a>
            <div class="dropdown-menu dropdown-menu-header wd-200">
               <ul class="list-unstyled user-profile-nav">
-                 <li><a href=""><i class="icon ion-ios-person-outline"></i> Edit Profile</a></li>
+                 <li><a href="{{ route('profile.setting') }}"><i class="icon ion-ios-person-outline"></i> Edit Profile</a></li>
                  <li><a href=""><i class="icon ion-ios-gear-outline"></i> Settings</a></li>
                  <li>
                     <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="icon ion-power"></i> Sign Out</a>
