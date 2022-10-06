@@ -34,8 +34,18 @@
     <link href="{{ asset('backend/lib/font-awesome/css/font-awesome.css')}}" rel="stylesheet">
     <link href="{{ asset('backend/lib/Ionicons/css/ionicons.css')}}" rel="stylesheet">
     <link href="{{ asset('backend/lib/perfect-scrollbar/css/perfect-scrollbar.css')}}" rel="stylesheet">
+          <!-- DataTables -->
+  <link rel="stylesheet" href="{{ asset('backend/datatables-bs4/css/dataTables.bootstrap4.min.css')}}">
+  <link rel="stylesheet" href="{{ asset('backend/datatables-responsive/css/responsive.bootstrap4.min.css')}}">
+
+  <link rel="stylesheet" href="{{ asset('backend/datatables-buttons/css/buttons.bootstrap4.min.css')}}">
+
     <link href="{{ asset('backend/lib/rickshaw/rickshaw.min.css" rel="stylesheet')}}">
     <link rel="stylesheet" type="text/css" href="{{ asset('backend/lib/toastr/toastr.css') }}">
+
+
+    {{-- <link href="{{ asset('backend/lib/datatables/jquery.dataTables.css') }}" rel="stylesheet"> --}}
+    <link href="{{ asset('backend/lib/select2/css/select2.min.css') }}" rel="stylesheet">
     <!-- Starlight CSS -->
     <link rel="stylesheet" href="{{ asset('backend/css/starlight.css')}}">
   </head>
@@ -64,21 +74,63 @@
     <script src="{{ asset('backend/lib/jquery/jquery.js')}}"></script>
     <script src="{{ asset('backend/lib/popper.js/popper.js')}}"></script>
     <script src="{{ asset('backend/lib/bootstrap/bootstrap.js')}}"></script>
+        <!-- DataTables -->
+{{-- <script src="{{ asset('backend/datatables/jquery.dataTables.min.js')}}"></script>
+<script src="{{ asset('backend/datatables-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
+<script src="{{ asset('backend/datatables-responsive/js/dataTables.responsive.min.js')}}"></script>
+<script src="{{ asset('backend/datatables-responsive/js/responsive.bootstrap4.min.js')}}"></script> --}}
+
+<!-- DataTables  & Plugins -->
+<script src="{{ asset('backend/datatables/jquery.dataTables.min.js')}}"></script>
+<script src="{{ asset('backend/datatables-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
+<script src="{{ asset('backend/datatables-responsive/js/dataTables.responsive.min.js')}}"></script>
+<script src="{{ asset('backend/datatables-responsive/js/responsive.bootstrap4.min.js')}}"></script>
+<script src="{{ asset('backend/datatables-buttons/js/dataTables.buttons.min.js')}}"></script>
+<script src="{{ asset('backend/datatables-buttons/js/buttons.bootstrap4.min.js')}}"></script>
+<script src="{{ asset('backend/jszip/jszip.min.js')}}"></script>
+<script src="{{ asset('backend/pdfmake/pdfmake.min.js')}}"></script>
+<script src="{{ asset('backend/pdfmake/vfs_fonts.js')}}"></script>
+<script src="{{ asset('backend/datatables-buttons/js/buttons.html5.min.js')}}"></script>
+<script src="{{ asset('backend/datatables-buttons/js/buttons.print.min.js')}}"></script>
+<script src="{{ asset('backend/datatables-buttons/js/buttons.colVis.min.js')}}"></script>
+
     <script src="{{ asset('backend/lib/jquery-ui/jquery-ui.js')}}"></script>
     <script src="{{ asset('backend/lib/perfect-scrollbar/js/perfect-scrollbar.jquery.js')}}"></script>
-    <script src="{{ asset('backend/lib/jquery.sparkline.bower/jquery.sparkline.min.js')}}"></script>
-    <script src="{{ asset('backend/lib/d3/d3.js')}}"></script>
-    <script src="{{ asset('backend/lib/rickshaw/rickshaw.min.js')}}"></script>
-    <script src="{{ asset('backend/lib/chart.js/Chart.js')}}"></script>
+
+
+
+    {{-- <script src="{{ asset('backend/lib/datatables/jquery.dataTables.js') }}"></script>
+    <script src="{{ asset('backend/lib/datatables-responsive/dataTables.responsive.js') }}"></script> --}}
+    <script src="{{ asset('backend/lib/select2/js/select2.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('backend/lib/toastr/toastr.min.js') }}"></script>
+
+    <script>
+      $(function () {
+        $("#example1").DataTable({
+          "responsive": true, "lengthChange": false, "autoWidth": false,
+          "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+        }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+        $('#example2').DataTable({
+          "paging": true,
+          "lengthChange": false,
+          "searching": false,
+          "ordering": true,
+          "info": true,
+          "autoWidth": false,
+          "responsive": true,
+        });
+      });
+    </script>
+    {{-- <script src="{{ asset('backend/lib/chart.js/Chart.js')}}"></script>
     <script src="{{ asset('backend/lib/Flot/jquery.flot.js')}}"></script>
     <script src="{{ asset('backend/lib/Flot/jquery.flot.pie.js')}}"></script>
     <script src="{{ asset('backend/lib/Flot/jquery.flot.resize.js')}}"></script>
     <script src="{{ asset('backend/lib/flot-spline/jquery.flot.spline.js')}}"></script>
-
     <script src="{{ asset('backend/js/starlight.js')}}"></script>
     <script src="{{ asset('backend/js/ResizeSensor.js')}}"></script>
-    <script src="{{ asset('backend/js/dashboard.js')}}"></script>
-    <script type="text/javascript" src="{{ asset('backend/lib/toastr/toastr.min.js') }}"></script>
+    <script src="{{ asset('backend/js/dashboard.js')}}"></script> --}}
+   
+  
 
     <script>
         @if (Session::has('message'))
@@ -116,5 +168,7 @@
 
     });
     </script> 
+
+  
   </body>
 </html>
