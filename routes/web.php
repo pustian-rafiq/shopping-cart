@@ -35,6 +35,9 @@ Route::group(['prefix'=>'admin','middleware' =>['admin','auth'],'namespace'=>'Ad
     Route::post('update/profile','AdminController@UpdateProfile')->name('change.profile');
     Route::post('update/image','AdminController@UpdateImage')->name('change.image');
     Route::post('update/password','AdminController@UpdatePassword')->name('change.password');
+
+     //Brand routes
+     Route::get('brands','BrandController@index')->name('brand.view');
 });
 
 
