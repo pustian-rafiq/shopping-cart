@@ -35,7 +35,7 @@
     <link href="{{ asset('backend/lib/Ionicons/css/ionicons.css')}}" rel="stylesheet">
     <link href="{{ asset('backend/lib/perfect-scrollbar/css/perfect-scrollbar.css')}}" rel="stylesheet">
     <link href="{{ asset('backend/lib/rickshaw/rickshaw.min.css" rel="stylesheet')}}">
-
+    <link rel="stylesheet" type="text/css" href="{{ asset('backend/lib/toastr/toastr.css') }}">
     <!-- Starlight CSS -->
     <link rel="stylesheet" href="{{ asset('backend/css/starlight.css')}}">
   </head>
@@ -78,5 +78,43 @@
     <script src="{{ asset('backend/js/starlight.js')}}"></script>
     <script src="{{ asset('backend/js/ResizeSensor.js')}}"></script>
     <script src="{{ asset('backend/js/dashboard.js')}}"></script>
+    <script type="text/javascript" src="{{ asset('backend/lib/toastr/toastr.min.js') }}"></script>
+
+    <script>
+        @if (Session::has('message'))
+            var type ="{{ Session::get('alert-type', 'info') }}"
+            switch(type){
+            case 'info':
+            toastr.info(" {{ Session::get('message') }} ");
+            break;
+        
+            case 'success':
+            toastr.success(" {{ Session::get('message') }} ");
+            break;
+        
+            case 'warning':
+            toastr.warning(" {{ Session::get('message') }} ");
+            break;
+        
+            case 'error':
+            toastr.error(" {{ Session::get('message') }} ");
+            break;
+            }
+        @endif
+    </script>
+
+
+    {{-- Image preview --}}
+    <script type="text/javascript">
+    $('#image').change(function(){
+            
+    let reader = new FileReader();
+    reader.onload = (e) => { 
+      $('#preview-image').attr('src', e.target.result); 
+    }
+    reader.readAsDataURL(this.files[0]); 
+
+    });
+    </script> 
   </body>
 </html>
