@@ -38,4 +38,6 @@ Route::group(['prefix'=>'user','middleware' =>['user','auth'],'namespace'=>'User
     Route::post('update/profile','UserController@UpdateProfile')->name('update.profile');
     Route::get('update/image','UserController@UpdateImage')->name('update.image');
     Route::post('store/image','UserController@StoreImage')->name('store.image');
+    Route::get('update/password','UserController@UpdatePassword')->name('update.password');
+    Route::post('store/password','UserController@StorePassword')->name('store.password');
 });
