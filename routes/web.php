@@ -29,6 +29,7 @@ Auth::routes();
 Route::group(['prefix'=>'admin','middleware' =>['admin','auth'],'namespace'=>'Admin'], function(){
     // Route::get('dashboard',[UserController::class,'index'])->name('admin.dashboard');
     Route::get('dashboard','AdminController@index')->name('admin.dashboard');
+    Route::get('profile/setting','AdminController@ProfileView')->name('profile.setting');
 });
 
 

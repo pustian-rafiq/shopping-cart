@@ -3,7 +3,7 @@
 @section('content')
 <div class="sl-mainpanel">
     <nav class="breadcrumb sl-breadcrumb">
-      <a class="breadcrumb-item" href="index.html">Shopping Cart</a>
+      <a class="breadcrumb-item" href="{{ url('/') }}">Shopping Cart</a>
       <span class="breadcrumb-item active">Dashboard</span>
     </nav>
 

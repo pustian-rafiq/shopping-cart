@@ -14,7 +14,7 @@
                 <div class="nav-outer">
                    <ul class="nav navbar-nav">
                       <li class="active dropdown yamm-fw">
-                         <a href="home.html" data-hover="dropdown" class="dropdown-toggle" data-toggle="dropdown">Home</a>
+                         <a href="{{ url('/') }}" data-hover="dropdown" class="dropdown-toggle" data-toggle="dropdown">Home</a>
                       </li>
                       <li class="dropdown yamm mega-menu">
                          <a href="home.html" data-hover="dropdown" class="dropdown-toggle" data-toggle="dropdown">Clothing</a>
