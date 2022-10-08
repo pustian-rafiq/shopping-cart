@@ -38,6 +38,19 @@ Route::group(['prefix'=>'admin','middleware' =>['admin','auth'],'namespace'=>'Ad
 
      //Brand routes
      Route::get('brands','BrandController@index')->name('brand.view');
+     Route::get('brands/add','BrandController@BrandAdd')->name('brand.add');
+     Route::post('brands/store','BrandController@BrandStore')->name('brand.store');
+     Route::get('brands/edit/{id}','BrandController@BrandEdit')->name('brand.edit');
+     Route::post('brands/update/{id}','BrandController@BrandUpdate')->name('brand.update');
+     Route::get('brands/delete/{id}','BrandController@BrandDelete')->name('brand.delete');
+
+     //Brand routes
+     Route::get('categories','CategoryController@index')->name('category.view');
+     Route::get('category/add','CategoryController@CategoryAdd')->name('category.add');
+     Route::post('category/store','CategoryController@CategoryStore')->name('category.store');
+     Route::get('category/edit/{id}','CategoryController@CategoryEdit')->name('category.edit');
+     Route::post('category/update/{id}','CategoryController@CategoryUpdate')->name('category.update');
+     Route::get('category/delete/{id}','CategoryController@CategoryDelete')->name('category.delete');
 });
 
 
