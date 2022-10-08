@@ -19,7 +19,7 @@
               <a class="float-right btn btn-primary" href="{{ route('brand.view') }}">Back</a>
             </div>
               <div class="card-body">
-            <form action="{{ route('brand.store') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('brand.update',$brand->id) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
                   <label class="form-control-label">Brand Name English: <span class="tx-danger">*</span></label>
@@ -39,11 +39,12 @@
 
                 <div class="form-group">
                   <label class="form-control-label">Brand Image: <span class="tx-danger">*</span></label>
+                  <input type="hidden" name="old_image" value="{{ $brand->brand_image }}">
                   <input class="form-control" id="image" value={{$brand->brand_image}} type="file" name="brand_image">
                   @error('brand_image')
                   <span class="text-danger">{{ $message }}</span>
                @enderror
-                </div>{{$brand->brand_image}}
+                </div>
                 <div class="form-group">
                   <img id="preview-image" style="border:1px solid black; height:100px; width:100px" src="{{ asset($brand->brand_image) }}"
                   alt="preview image" style="max-height: 250px;">
@@ -55,7 +56,6 @@
               </div>
           </div>
         </div>
-     
     </div><!-- row -->
 </div><!-- sl-pagebody -->
   

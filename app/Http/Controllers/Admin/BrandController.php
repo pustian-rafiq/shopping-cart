@@ -58,4 +58,56 @@ class BrandController extends Controller
             $brand = Brand::findOrFail($id)->first();
             return view('admin.brand.edit', compact('brand'));
         }
+
+        //view brand add page
+        public function BrandUpdate(Request $request,$id){
+            
+            $brand = Brand::findOrFail($id)->first();
+            $old_image = $request->old_image;
+            $brand_image = $request->file('brand_image');
+
+            $request->validate([
+                'brand_name_en' => 'required',
+                'brand_name_bn' => 'required',
+           ],[
+               'brand_name_en.required' => 'Brand name in English is required',
+               'brand_name_bn.required' => 'Brand name in Bangla is required'
+           ]);
+
+           if($brand_image){
+                $name_gen=hexdec(uniqid()).'.'.$brand_image->getClientOriginalExtension();
+                Image::make($brand_image)->resize(166,110)->save('uploads/brand/'.$name_gen);
+                $save_url = 'uploads/brand/'.$name_gen;
+
+                $brand->update([
+                    'brand_name_en' => $request->brand_name_en,
+                    'brand_name_bn' => $request->brand_name_bn,
+                    'brand_slug_en' => strtolower(str_replace(' ','-',$request->brand_name_en)),
+                    'brand_slug_bn' => str_replace(' ','-',$request->brand_name_bn),
+                    'brand_image' => $save_url,
+                    'updated_at' => Carbon::now(),
+                ]);
+
+                $notification=array(
+                    'message'=>'Brand updated Successfully',
+                    'alert-type'=>'success'
+                );
+                return Redirect()->route('brand.view')->with($notification);
+           }else{
+            $brand->update([
+                    'brand_name_en' => $request->brand_name_en,
+                    'brand_name_bn' => $request->brand_name_bn,
+                    'brand_slug_en' => strtolower(str_replace(' ','-',$request->brand_name_en)),
+                    'brand_slug_bn' => str_replace(' ','-',$request->brand_name_bn),
+                    'updated_at' => Carbon::now(),
+                ]);
+
+                $notification=array(
+                    'message'=>'Brand updated Successfully',
+                    'alert-type'=>'success'
+                );
+                return Redirect()->route('brand.view')->with($notification);
+           }
+            return view('admin.brand.edit', compact('brand'));
+        }
 }
