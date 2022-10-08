@@ -5,6 +5,7 @@
     <nav class="breadcrumb sl-breadcrumb">
       <a class="breadcrumb-item" href="{{ url('/') }}">Shopping Cart</a>
       <span class="breadcrumb-item active">Dashboard</span>
+      <span class="breadcrumb-item active">Brand List</span>
     </nav>
 
     <div class="sl-pagebody">
@@ -12,7 +13,11 @@
       <div class="row row-sm">
         <div class="col-md-12">
             <div class="card">
-              <div class="card-header">Brand List</div>
+              <div class="card-header">
+                <h5 class="card-title d-inline">Brand List</h5> 
+                <a class="float-right btn btn-primary" href="{{ route('brand.add') }}">Add New Brand</a>
+              </div>
+             
               <div class="card-body">
               <div class="table-wrapper">
                 <table id="example1" class=" table table-bordered table-striped">
