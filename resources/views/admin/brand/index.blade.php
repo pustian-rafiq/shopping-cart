@@ -30,7 +30,6 @@
                         </tr>
                       </thead>
                     <tbody class="bg-white">
-                        <tbody>
                             @foreach ($brands as $item)
                             <tr>
                               <td>
@@ -39,14 +38,12 @@
                               <td>{{ $item->brand_name_en }}</td>
                               <td>{{ $item->brand_name_bn }}</td>
                               <td>
-                                <a href="{{ url('admin/brand-edit/'.$item->id) }}" class="btn btn-sm btn-primary" title="edit data"> <i class="fa fa-pencil"></i></a>
+                                <a href="{{ route('brand.edit', $item->id) }}" class="btn btn-sm btn-primary" title="edit data"> <i class="fa fa-pencil"></i></a>
       
                                 <a href="{{ url('admin/brand-delete/'.$item->id) }}" class="btn btn-sm btn-danger" id="delete" title="delete data"><i class="fa fa-trash"></i></a>
                               </td>
                             </tr>
                             @endforeach
-                          </tbody>
-              
                     </tbody>
                     <tfoot class="bg-secondary">
                         <tr>

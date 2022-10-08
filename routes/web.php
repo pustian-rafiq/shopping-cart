@@ -40,6 +40,7 @@ Route::group(['prefix'=>'admin','middleware' =>['admin','auth'],'namespace'=>'Ad
      Route::get('brands','BrandController@index')->name('brand.view');
      Route::get('brands/add','BrandController@BrandAdd')->name('brand.add');
      Route::post('brands/store','BrandController@BrandStore')->name('brand.store');
+     Route::get('brands/edit/{id}','BrandController@BrandEdit')->name('brand.edit');
 });
 
 

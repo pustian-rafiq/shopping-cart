@@ -52,5 +52,10 @@ class BrandController extends Controller
                 'alert-type'=>'success'
             );
             return Redirect()->route('brand.view')->with($notification);
-    }
+       }
+        //view brand add page
+        public function BrandEdit($id){
+            $brand = Brand::findOrFail($id)->first();
+            return view('admin.brand.edit', compact('brand'));
+        }
 }
