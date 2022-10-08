@@ -43,6 +43,10 @@ Route::group(['prefix'=>'admin','middleware' =>['admin','auth'],'namespace'=>'Ad
      Route::get('brands/edit/{id}','BrandController@BrandEdit')->name('brand.edit');
      Route::post('brands/update/{id}','BrandController@BrandUpdate')->name('brand.update');
      Route::get('brands/delete/{id}','BrandController@BrandDelete')->name('brand.delete');
+
+     //Brand routes
+     Route::get('categories','CategoryController@index')->name('category.view');
+ 
 });
 
 
