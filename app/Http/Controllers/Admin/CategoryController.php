@@ -27,8 +27,8 @@ class CategoryController extends Controller
             'category_name_bn' => 'required',
             'category_icon' => 'required',
        ],[
-           'brand_name_en.required' => 'Brand name in English is required',
-           'brand_name_bn.required' => 'Brand name in Bangla is required'
+           'brand_name_en.required' => 'Category name in English is required',
+           'brand_name_bn.required' => 'Category name in Bangla is required'
        ]);
 
             Category::insert([
@@ -46,4 +46,69 @@ class CategoryController extends Controller
             );
             return Redirect()->route('category.view')->with($notification);
        }
+
+       //view brand add page
+       public function CategoryEdit($id){
+        $category = Category::findOrFail($id)->first();
+        return view('admin.category.edit', compact('category'));
+    }
+
+    //view brand add page
+    public function CategoryUpdate(Request $request,$id){
+        
+        $category = Category::findOrFail($id)->first();
+
+            $request->validate([
+                'category_name_en' => 'required',
+                'category_name_bn' => 'required',
+                'category_icon' => 'required',
+           ],[
+               'brand_name_en.required' => 'Category name in English is required',
+               'brand_name_bn.required' => 'Category name in Bangla is required'
+           ]);
+
+            if($category){
+                $result = $category->update([
+                    'category_name_en' => $request->category_name_en,
+                    'category_name_bn' => $request->category_name_bn,
+                    'category_slug_en' => strtolower(str_replace(' ','-',$request->category_name_en)),
+                    'category_slug_bn' => str_replace(' ','-',$request->category_name_bn),
+                    'category_icon' => $request->category_icon,
+                    'updated_at' => Carbon::now(),
+                ]);
+                if($result){
+                    $notification=array(
+                        'message'=>'Category updated Successfully',
+                        'alert-type'=>'success'
+                    );
+                    return Redirect()->route('category.view')->with($notification);
+                }else{
+                    $notification=array(
+                        'message'=>'Something went wrong!',
+                        'alert-type'=>'warning'
+                    );
+                    return Redirect()->back()->with($notification);
+                }
+
+            }else{
+                $notification=array(
+                    'message'=>'Something went wrong!',
+                    'alert-type'=>'warning'
+                );
+                return Redirect()->back()->with($notification);
+            }
+           
+        
+    }
+    //Delete a brand
+    public function CategoryDelete($id) {
+        $brand = Category::findOrFail($id);
+
+        $brand->delete();
+        $notification=array(
+        'message'=>'Category Deleted Successfully',
+        'alert-type'=>'success'
+    );
+    return Redirect()->back()->with($notification);
+    }
 }

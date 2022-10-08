@@ -108,7 +108,6 @@ class BrandController extends Controller
                 );
                 return Redirect()->route('brand.view')->with($notification);
            }
-            return view('admin.brand.edit', compact('brand'));
         }
 //Delete a brand
     public function BrandDelete($id) {
