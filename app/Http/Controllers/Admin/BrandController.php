@@ -48,7 +48,7 @@ class BrandController extends Controller
             ]);
 
             $notification=array(
-                'message'=>'New brand Upload Successfully',
+                'message'=>'New brand added Successfully',
                 'alert-type'=>'success'
             );
             return Redirect()->route('brand.view')->with($notification);

@@ -5,7 +5,7 @@
     <nav class="breadcrumb sl-breadcrumb">
       <a class="breadcrumb-item" href="{{ url('/') }}">Shopping Cart</a>
       <span class="breadcrumb-item active">Dashboard</span>
-      <span class="breadcrumb-item active">Add New Brand</span>
+      <span class="breadcrumb-item active">Add Brand</span>
     </nav>
 
     <div class="sl-pagebody">

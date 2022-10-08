@@ -46,7 +46,11 @@ Route::group(['prefix'=>'admin','middleware' =>['admin','auth'],'namespace'=>'Ad
 
      //Brand routes
      Route::get('categories','CategoryController@index')->name('category.view');
- 
+     Route::get('category/add','CategoryController@CategoryAdd')->name('category.add');
+     Route::post('category/store','CategoryController@CategoryStore')->name('category.store');
+     Route::get('category/edit/{id}','CategoryController@CategoryEdit')->name('category.edit');
+     Route::post('category/update/{id}','CategoryController@CategoryUpdate')->name('category.update');
+     Route::get('category/delete/{id}','CategoryController@CategoryDelete')->name('category.delete');
 });
 
 
