@@ -110,4 +110,17 @@ class BrandController extends Controller
            }
             return view('admin.brand.edit', compact('brand'));
         }
+//Delete a brand
+    public function BrandDelete($id) {
+        $brand = Brand::findOrFail($id);
+        $img = $brand->brand_image;
+        unlink($img);
+
+        $brand->delete();
+        $notification=array(
+         'message'=>'Brand Deleted Successfully',
+         'alert-type'=>'success'
+     );
+     return Redirect()->back()->with($notification);
+    }
 }

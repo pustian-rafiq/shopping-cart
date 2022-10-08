@@ -42,6 +42,7 @@ Route::group(['prefix'=>'admin','middleware' =>['admin','auth'],'namespace'=>'Ad
      Route::post('brands/store','BrandController@BrandStore')->name('brand.store');
      Route::get('brands/edit/{id}','BrandController@BrandEdit')->name('brand.edit');
      Route::post('brands/update/{id}','BrandController@BrandUpdate')->name('brand.update');
+     Route::get('brands/delete/{id}','BrandController@BrandDelete')->name('brand.delete');
 });
 
 
