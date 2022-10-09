@@ -1,5 +1,5 @@
 @extends('admin.admin_master')
-
+@section('categories') active show-sub @endsection
 @section('content')
 <div class="sl-mainpanel">
     <nav class="breadcrumb sl-breadcrumb">

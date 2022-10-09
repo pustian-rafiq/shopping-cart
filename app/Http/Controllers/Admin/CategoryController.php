@@ -14,9 +14,8 @@ class CategoryController extends Controller
         $categories = Category::latest()->get();
         return view('admin.category.index', compact('categories'));
     }
-     //view brand add page
+     //view category add page
      public function CategoryAdd(){
-        $brands = Category::latest()->get();
         return view('admin.category.create');
     }
 

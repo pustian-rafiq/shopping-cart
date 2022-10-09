@@ -44,13 +44,17 @@ Route::group(['prefix'=>'admin','middleware' =>['admin','auth'],'namespace'=>'Ad
      Route::post('brands/update/{id}','BrandController@BrandUpdate')->name('brand.update');
      Route::get('brands/delete/{id}','BrandController@BrandDelete')->name('brand.delete');
 
-     //Brand routes
-     Route::get('categories','CategoryController@index')->name('category.view');
+     //Category routes
+     Route::get('category','CategoryController@index')->name('category.view');
      Route::get('category/add','CategoryController@CategoryAdd')->name('category.add');
      Route::post('category/store','CategoryController@CategoryStore')->name('category.store');
      Route::get('category/edit/{id}','CategoryController@CategoryEdit')->name('category.edit');
      Route::post('category/update/{id}','CategoryController@CategoryUpdate')->name('category.update');
      Route::get('category/delete/{id}','CategoryController@CategoryDelete')->name('category.delete');
+     
+     //Sub Category routes
+     Route::get('sub-category','SubCategoryController@index')->name('subcategory.view');
+     Route::get('sub-category/add','SubCategoryController@SubCategoryAdd')->name('subcategory.add');
 });
 
 

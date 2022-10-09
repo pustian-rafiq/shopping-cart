@@ -100,14 +100,14 @@
          
       });
     </script>
-    {{-- <script src="{{ asset('backend/lib/chart.js/Chart.js')}}"></script>
+    <script src="{{ asset('backend/lib/chart.js/Chart.js')}}"></script>
     <script src="{{ asset('backend/lib/Flot/jquery.flot.js')}}"></script>
     <script src="{{ asset('backend/lib/Flot/jquery.flot.pie.js')}}"></script>
     <script src="{{ asset('backend/lib/Flot/jquery.flot.resize.js')}}"></script>
     <script src="{{ asset('backend/lib/flot-spline/jquery.flot.spline.js')}}"></script>
     <script src="{{ asset('backend/js/starlight.js')}}"></script>
     <script src="{{ asset('backend/js/ResizeSensor.js')}}"></script>
-    <script src="{{ asset('backend/js/dashboard.js')}}"></script> --}}
+    <script src="{{ asset('backend/js/dashboard.js')}}"></script>
    
   
 
