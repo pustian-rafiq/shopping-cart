@@ -55,6 +55,7 @@ Route::group(['prefix'=>'admin','middleware' =>['admin','auth'],'namespace'=>'Ad
      //Sub Category routes
      Route::get('sub-category','SubCategoryController@index')->name('subcategory.view');
      Route::get('sub-category/add','SubCategoryController@SubCategoryAdd')->name('subcategory.add');
+     Route::post('sub-category/store','SubCategoryController@SubCategoryStore')->name('subcategory.store');
 });
 
 

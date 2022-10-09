@@ -19,7 +19,7 @@ class CategoryController extends Controller
         return view('admin.category.create');
     }
 
-    //Store new brand
+    //Store new category
     public function CategoryStore(Request $request){
         $request->validate([
             'category_name_en' => 'required',
