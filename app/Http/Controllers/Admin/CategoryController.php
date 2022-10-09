@@ -9,8 +9,8 @@ use Illuminate\Support\Carbon;
 use Intervention\Image\Facades\Image;
 class CategoryController extends Controller
 {
-       //view categories page
-       public function index(){
+    //view categories page
+    public function index(){
         $categories = Category::latest()->get();
         return view('admin.category.index', compact('categories'));
     }

@@ -31,8 +31,8 @@
       </div><!-- menu-item -->
     </a><!-- sl-menu-link -->
     <ul class="sl-menu-sub nav flex-column">
-      <li class="nav-item"><a href="{{ route('category.view') }}" class="nav-link {{ request()->is('admin/category*') ? 'active' : '' }}">Show Category</a></li>
-      <li class="nav-item"><a href="{{ route('subcategory.view') }}" class="nav-link {{ request()->is('admin/sub-category*') ? 'active' : '' }}">Show Sub-Category</a></li>  
+      <li class="nav-item"><a href="{{ route('category.view') }}" class="nav-link @yield('show-category')">Show Category</a></li>
+      <li class="nav-item"><a href="{{ route('subcategory.view') }}" class="nav-link @yield('show-subcategory')">Show Sub-Category</a></li>  
       {{-- <li class="nav-item"><a href="{{ route('sub-sub-category') }}" class="nav-link @yield('subsubcategory')">Sub->Sub-Category</a></li> --}}
     </ul>
     
