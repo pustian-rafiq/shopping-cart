@@ -28,7 +28,7 @@
                     <option label="Choose one category"></option>
                     @foreach ($categories as $cat)
                     {{-- <option value="{{ $cat->id }}">{{ ucwords($cat->category_name_en) }}</option> --}}
-                    <option value="{{ $cat->id }}">{{ $cat->category_name_en }}</option>
+                    <option value="{{ $cat->id }}">{{ ucwords($cat->category_name_en) }}</option>
                     @endforeach
                   </select>
                   @error('category_id')

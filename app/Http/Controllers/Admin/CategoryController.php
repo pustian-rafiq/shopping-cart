@@ -46,9 +46,9 @@ class CategoryController extends Controller
             return Redirect()->route('category.view')->with($notification);
        }
 
-       //view brand add page
-       public function CategoryEdit($id){
-        $category = Category::findOrFail($id)->first();
+    //view brand add page
+    public function CategoryEdit($id){
+        $category = Category::findOrFail($id);
         return view('admin.category.edit', compact('category'));
     }
 
