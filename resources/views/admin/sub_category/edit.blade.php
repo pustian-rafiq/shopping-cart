@@ -53,7 +53,7 @@
   
                  
                   <div class="form-layout-footer ">
-                    <button type="submit" class="btn btn-info " style="cursor:pointer">Add SubCategory</button>
+                    <button type="submit" class="btn btn-info " style="cursor:pointer">Update SubCategory</button>
                   </div><!-- form-layout-footer -->
                 </form>
               </div>

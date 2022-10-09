@@ -55,7 +55,7 @@ class CategoryController extends Controller
     //view brand add page
     public function CategoryUpdate(Request $request,$id){
         
-        $category = Category::findOrFail($id)->first();
+        $category = Category::findOrFail($id);
 
             $request->validate([
                 'category_name_en' => 'required',
@@ -101,9 +101,9 @@ class CategoryController extends Controller
     }
     //Delete a brand
     public function CategoryDelete($id) {
-        $brand = Category::findOrFail($id);
+        $category = Category::findOrFail($id);
 
-        $brand->delete();
+        $category->delete();
         $notification=array(
         'message'=>'Category Deleted Successfully',
         'alert-type'=>'success'

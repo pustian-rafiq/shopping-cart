@@ -60,25 +60,26 @@ class SubCategoryController extends Controller
     //view brand add page
     public function SubCategoryUpdate(Request $request,$id){
         
-        $category = Category::findOrFail($id)->first();
+        $subcategory = SubCategory::findOrFail($id);
 
-            $request->validate([
-                'category_name_en' => 'required',
-                'category_name_bn' => 'required',
-                'category_icon' => 'required',
-           ],[
-               'brand_name_en.required' => 'Category name in English is required',
-               'brand_name_bn.required' => 'Category name in Bangla is required'
-           ]);
+        $request->validate([
+            'subcategory_name_en' => 'required',
+            'subcategory_name_bn' => 'required',
+            'category_id' => 'required',
+       ],[
+           'subcategory_name_en.required' => 'SubC ategory name in English is required',
+           'subcategory_name_bn.required' => 'Sub Category name in Bangla is required'
+       ]);
 
-            if($category){
-                $result = $category->update([
-                    'category_name_en' => $request->category_name_en,
-                    'category_name_bn' => $request->category_name_bn,
-                    'category_slug_en' => strtolower(str_replace(' ','-',$request->category_name_en)),
-                    'category_slug_bn' => str_replace(' ','-',$request->category_name_bn),
-                    'category_icon' => $request->category_icon,
-                    'updated_at' => Carbon::now(),
+            if($subcategory){
+                $result = $subcategory->update([
+                  
+                        'subcategory_name_en' => $request->subcategory_name_en,
+                        'subcategory_name_bn' => $request->subcategory_name_bn,
+                        'subcategory_slug_en' => strtolower(str_replace(' ','-',$request->subcategory_name_en)),
+                        'subcategory_slug_bn' => str_replace(' ','-',$request->subcategory_name_bn),
+                        'category_id' => $request->category_id,
+                        'updated_at' => Carbon::now(),
                 ]);
                 if($result){
                     $notification=array(
@@ -104,9 +105,9 @@ class SubCategoryController extends Controller
         }
         //Delete a brand
         public function SubCategoryDelete($id) {
-            $brand = Category::findOrFail($id);
+            $subcategory = SubCategory::findOrFail($id);
 
-            $brand->delete();
+            $subcategory->delete();
             $notification=array(
             'message'=>'Subcategory Deleted Successfully',
             'alert-type'=>'success'
