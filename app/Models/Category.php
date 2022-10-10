@@ -12,4 +12,9 @@ class Category extends Model
      * @var array
      */
     protected $guarded = [];
+
+    //Fetch all sub categories under a category
+    // public function subcategories(){
+    //     return $this->hasMany(SubCategory::class);
+    // }
 }

@@ -9,18 +9,17 @@ use Illuminate\Support\Carbon;
 use Intervention\Image\Facades\Image;
 class CategoryController extends Controller
 {
-       //view categories page
-       public function index(){
+    //view categories page
+    public function index(){
         $categories = Category::latest()->get();
         return view('admin.category.index', compact('categories'));
     }
-     //view brand add page
+     //view category add page
      public function CategoryAdd(){
-        $brands = Category::latest()->get();
         return view('admin.category.create');
     }
 
-    //Store new brand
+    //Store new category
     public function CategoryStore(Request $request){
         $request->validate([
             'category_name_en' => 'required',
@@ -47,16 +46,16 @@ class CategoryController extends Controller
             return Redirect()->route('category.view')->with($notification);
        }
 
-       //view brand add page
-       public function CategoryEdit($id){
-        $category = Category::findOrFail($id)->first();
+    //view brand add page
+    public function CategoryEdit($id){
+        $category = Category::findOrFail($id);
         return view('admin.category.edit', compact('category'));
     }
 
-    //view brand add page
+    //view category add page
     public function CategoryUpdate(Request $request,$id){
         
-        $category = Category::findOrFail($id)->first();
+        $category = Category::findOrFail($id);
 
             $request->validate([
                 'category_name_en' => 'required',
@@ -100,11 +99,11 @@ class CategoryController extends Controller
            
         
     }
-    //Delete a brand
+    //Delete a category
     public function CategoryDelete($id) {
-        $brand = Category::findOrFail($id);
+        $category = Category::findOrFail($id);
 
-        $brand->delete();
+        $category->delete();
         $notification=array(
         'message'=>'Category Deleted Successfully',
         'alert-type'=>'success'
