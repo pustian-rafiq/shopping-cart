@@ -30,7 +30,7 @@ class SubCategoryController extends Controller
             'subcategory_name_bn' => 'required',
             'category_id' => 'required',
        ],[
-           'subcategory_name_en.required' => 'SubC ategory name in English is required',
+           'subcategory_name_en.required' => 'Sub Category name in English is required',
            'subcategory_name_bn.required' => 'Sub Category name in Bangla is required'
        ]);
 
@@ -67,7 +67,7 @@ class SubCategoryController extends Controller
             'subcategory_name_bn' => 'required',
             'category_id' => 'required',
        ],[
-           'subcategory_name_en.required' => 'SubC ategory name in English is required',
+           'subcategory_name_en.required' => 'Sub Category name in English is required',
            'subcategory_name_bn.required' => 'Sub Category name in Bangla is required'
        ]);
 
@@ -112,12 +112,11 @@ class SubCategoryController extends Controller
             'message'=>'Subcategory Deleted Successfully',
             'alert-type'=>'success'
         );
-            return Redirect()->back()->with($notification);
+        return Redirect()->back()->with($notification);
         }
-
     // Fetch sub categories under a category
         public function GetSubCategory($cat_id){
             $subcat = SubCategory::where('category_id',$cat_id)->orderBy('subcategory_name_en','ASC')->get();
-            return $subcat;
+            return json_encode($subcat);
         }
 }
