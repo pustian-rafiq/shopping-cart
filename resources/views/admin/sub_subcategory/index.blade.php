@@ -7,7 +7,7 @@
     <nav class="breadcrumb sl-breadcrumb">
       <a class="breadcrumb-item" href="{{ url('/') }}">Shopping Cart</a>
       <span class="breadcrumb-item active">Dashboard</span>
-      <span class="breadcrumb-item active">SubCategory List</span>
+      <span class="breadcrumb-item active">Sub SubCategory List</span>
     </nav>
 
     <div class="sl-pagebody">
@@ -16,7 +16,7 @@
         <div class="col-md-12">
             <div class="card">
               <div class="card-header">
-                <h5 class="card-title d-inline">Brand List</h5> 
+                <h5 class="card-title d-inline">Sub SubCategory List</h5> 
                 <a class="float-right btn btn-primary" href="{{ route('subsubcategory.add') }}">Add Sub Sub-Category</a>
               </div>
              

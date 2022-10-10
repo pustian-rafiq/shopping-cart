@@ -52,7 +52,7 @@ class CategoryController extends Controller
         return view('admin.category.edit', compact('category'));
     }
 
-    //view brand add page
+    //view category add page
     public function CategoryUpdate(Request $request,$id){
         
         $category = Category::findOrFail($id);
@@ -99,7 +99,7 @@ class CategoryController extends Controller
            
         
     }
-    //Delete a brand
+    //Delete a category
     public function CategoryDelete($id) {
         $category = Category::findOrFail($id);
 

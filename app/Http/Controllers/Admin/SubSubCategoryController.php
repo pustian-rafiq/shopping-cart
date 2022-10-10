@@ -54,4 +54,72 @@ class SubSubCategoryController extends Controller
             );
             return Redirect()->route('subsubcategory.view')->with($notification);
        }
+
+    //view sub category add page
+    public function SubSubCategoryEdit($id){
+        $categories = Category::all();
+        $subsubcategory = SubSubCategory::findOrFail($id);
+        return view('admin.sub_subcategory.edit', compact('categories','subsubcategory'));
+    }
+
+    //Update sub sub category
+    public function SubSubCategoryUpdate(Request $request,$id){
+        
+        $subcategory = SubCategory::findOrFail($id);
+        $request->validate([
+            'subsubcategory_name_en' => 'required',
+            'subsubcategory_name_bn' => 'required',
+            'category_id' => 'required',
+            'subcategory_id' => 'required',
+       ],[
+           'subsubcategory_name_en.required' => 'Sub Category name in English is required',
+           'subsubcategory_name_bn.required' => 'Sub Category name in Bangla is required',
+           'category_id.required' => 'Category name is required',
+           'subcategory_id.required' => 'Sub Category is required',
+       ]);
+
+            if($subcategory){
+                $result = $subcategory->update([
+                  
+                    'subsubcategory_name_en' => $request->subsubcategory_name_en,
+                    'subsubcategory_name_bn' => $request->subsubcategory_name_bn,
+                    'subsubcategory_slug_en' => strtolower(str_replace(' ','-',$request->subsubcategory_name_en)),
+                    'subsubcategory_slug_bn' => str_replace(' ','-',$request->subsubcategory_name_bn),
+                    'category_id' => $request->category_id,
+                    'subcategory_id' => $request->subcategory_id,
+                    'updated_at' => Carbon::now(),
+                ]);
+                if($result){
+                    $notification=array(
+                        'message'=>'Sub subcategory updated Successfully',
+                        'alert-type'=>'success'
+                    );
+                    return Redirect()->route('category.view')->with($notification);
+                }else{
+                    $notification=array(
+                        'message'=>'Something went wrong!',
+                        'alert-type'=>'warning'
+                    );
+                    return Redirect()->back()->with($notification);
+                }
+
+            }else{
+                $notification=array(
+                    'message'=>'Something went wrong!',
+                    'alert-type'=>'warning'
+                );
+                return Redirect()->back()->with($notification);
+            }
+        }
+    //Delete a brand
+    public function SubSubCategoryDelete($id) {
+        $subsubcategory = SubSubCategory::findOrFail($id);
+
+        $subsubcategory->delete();
+        $notification=array(
+        'message'=>'Sub Subcategory Deleted Successfully',
+        'alert-type'=>'success'
+    );
+    return Redirect()->back()->with($notification);
+            }
 }

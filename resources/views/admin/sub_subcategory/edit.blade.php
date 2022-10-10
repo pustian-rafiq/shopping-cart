@@ -6,7 +6,7 @@
     <nav class="breadcrumb sl-breadcrumb">
       <a class="breadcrumb-item" href="{{ url('/') }}">Shopping Cart</a>
       <span class="breadcrumb-item active">Dashboard</span>
-      <span class="breadcrumb-item active">Add Sub Sub-Category</span>
+      <span class="breadcrumb-item active">Edit Sub Sub-Category</span>
     </nav>
 
     <div class="sl-pagebody">
@@ -16,11 +16,11 @@
         <div class="col-md-8 ">
           <div class="card">
             <div class="card-header">
-              <h5 class="card-title d-inline">Add Sub Sub-Category</h5> 
+              <h5 class="card-title d-inline">Edit Sub Sub-Category</h5> 
               <a class="float-right btn btn-primary" href="{{ route('subsubcategory.view') }}">View Sub Sub-Categories</a>
             </div>
               <div class="card-body">
-            <form action="{{ route('subsubcategory.store') }}" method="POST" >
+            <form action="{{ route('subsubcategory.update',$subsubcategory->id) }}" method="POST" >
                 @csrf
                 <div class="form-group">
                   <label class="form-control-label">Select Category: <span class="tx-danger">*</span></label>
@@ -28,7 +28,7 @@
                     <option label="Choose one category"></option>
                     @foreach ($categories as $cat)
                     {{-- <option value="{{ $cat->id }}">{{ ucwords($cat->category_name_en) }}</option> --}}
-                    <option value="{{ $cat->id }}">{{ ucwords($cat->category_name_en) }}</option>
+                    <option value="{{ $cat->id }}" {{ $cat->id === $subsubcategory->category_id ? 'selected' : '' }}>{{ ucwords($cat->category_name_en) }}</option>
                     @endforeach
                   </select>
                   @error('category_id')
@@ -48,7 +48,7 @@
 
                 <div class="form-group">
                   <label class="form-control-label">Sub SubCategory Name English: <span class="tx-danger">*</span></label>
-                  <input class="form-control" type="text" name="subsubcategory_name_en" value="{{ old('subsubcategory_name_en') }}" placeholder="Enter sub sub category name">
+                  <input class="form-control" type="text" name="subsubcategory_name_en" value="{{ $subsubcategory->subsubcategory_name_en }}" placeholder="Enter sub sub category name">
                   @error('subsubcategory_name_en')
                       <span class="text-danger">{{ $message }}</span>
                   @enderror
@@ -56,7 +56,7 @@
 
                 <div class="form-group">
                   <label class="form-control-label">Sub SubCategory Name Bangla: <span class="tx-danger">*</span></label>
-                  <input class="form-control" type="text" name="subsubcategory_name_bn" value="{{ old('subcategory_name_bn') }}" placeholder="Enter sub sub-category name">
+                  <input class="form-control" type="text" name="subsubcategory_name_bn"  value="{{ $subsubcategory->subsubcategory_name_bn }}" placeholder="Enter sub sub-category name">
                   @error('subsubcategory_name_bn')
                   <span class="text-danger">{{ $message }}</span>
                 @enderror
@@ -64,7 +64,7 @@
 
                
                 <div class="form-layout-footer ">
-                  <button type="submit" class="btn btn-info " style="cursor:pointer">Add Sub SubCategory</button>
+                  <button type="submit" class="btn btn-info " style="cursor:pointer">Update Sub SubCategory</button>
                 </div><!-- form-layout-footer -->
               </form>
               </div>

@@ -50,14 +50,14 @@ class SubCategoryController extends Controller
             return Redirect()->route('subcategory.view')->with($notification);
        }
 
-    //view brand add page
+    //view sub category add page
     public function SubCategoryEdit($id){
         $categories = Category::all();
         $subcategory = SubCategory::findOrFail($id);
         return view('admin.sub_category.edit', compact('categories','subcategory'));
     }
 
-    //view brand add page
+    //view sub category edit page
     public function SubCategoryUpdate(Request $request,$id){
         
         $subcategory = SubCategory::findOrFail($id);
@@ -103,7 +103,7 @@ class SubCategoryController extends Controller
                 return Redirect()->back()->with($notification);
             }
         }
-        //Delete a brand
+        //Delete a sub category
         public function SubCategoryDelete($id) {
             $subcategory = SubCategory::findOrFail($id);
 
