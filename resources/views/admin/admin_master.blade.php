@@ -38,9 +38,9 @@
      <!-- DataTables -->
     <link rel="stylesheet" href="{{ asset('backend/datatables-bs4/css/dataTables.bootstrap4.min.css')}}">
     <link rel="stylesheet" href="{{ asset('backend/datatables-responsive/css/responsive.bootstrap4.min.css')}}">
-    <link rel="stylesheet" href="../../plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+    {{-- <link rel="stylesheet" href="../../plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="../../plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
-    <link rel="stylesheet" href="../../plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+    <link rel="stylesheet" href="../../plugins/datatables-buttons/css/buttons.bootstrap4.min.css"> --}}
 
     <link href="{{ asset('backend/lib/rickshaw/rickshaw.min.css" rel="stylesheet')}}">
     <link rel="stylesheet" type="text/css" href="{{ asset('backend/lib/toastr/toastr.css') }}">
@@ -155,7 +155,7 @@
     <script src="{{ asset('backend/lib/flot-spline/jquery.flot.spline.js')}}"></script>
     <script src="{{ asset('backend/js/starlight.js')}}"></script>
     <script src="{{ asset('backend/js/ResizeSensor.js')}}"></script>
-    <script src="{{ asset('backend/js/dashboard.js')}}"></script>
+    {{-- <script src="{{ asset('backend/js/dashboard.js')}}"></script> --}}
 
 
     <script>

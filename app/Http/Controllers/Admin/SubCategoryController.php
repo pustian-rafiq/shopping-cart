@@ -112,7 +112,12 @@ class SubCategoryController extends Controller
             'message'=>'Subcategory Deleted Successfully',
             'alert-type'=>'success'
         );
-        return Redirect()->back()->with($notification);
+            return Redirect()->back()->with($notification);
         }
 
+    // Fetch sub categories under a category
+        public function GetSubCategory($cat_id){
+            $subcat = SubCategory::where('category_id',$cat_id)->orderBy('subcategory_name_en','ASC')->get();
+            return $subcat;
+        }
 }

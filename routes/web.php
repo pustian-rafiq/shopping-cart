@@ -59,6 +59,16 @@ Route::group(['prefix'=>'admin','middleware' =>['admin','auth'],'namespace'=>'Ad
      Route::get('sub-category/edit/{id}','SubCategoryController@SubCategoryEdit')->name('subcategory.edit');
      Route::post('sub-category/update/{id}','SubCategoryController@SubCategoryUpdate')->name('subcategory.update');
      Route::get('sub-category/delete/{id}','SubCategoryController@SubCategoryDelete')->name('subcategory.delete');
+
+    //Fetch sub category routes USING Ajax
+    Route::get('subcategory/ajax/{cat_id}','SubCategoryController@GetSubCategory');
+
+    //Sub sub category routes
+    Route::get('sub-sub-category','SubSubCategoryController@index')->name('subsubcategory.view');
+    Route::get('sub-sub-category/add','SubSubCategoryController@SubSubCategoryAdd')->name('subsubcategory.add');
+    Route::post('sub-sub-category/store','SubSubCategoryController@SubSubCategoryStore')->name('subsubcategory.store');
+
+   
 });
 
 
