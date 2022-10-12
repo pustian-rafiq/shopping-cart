@@ -52,7 +52,7 @@
               <div class="col-md-6">
                   <div class="form-group">
                       <label class="form-control-label">Select Sub-Category: <span class="tx-danger">*</span></label>
-                      <select class="form-control select2-show-search" data-placeholder="Select One" name="subcategory_id">
+                      <select class="form-control select2-show-search" id="subcategory_id" data-placeholder="Select One" name="subcategory_id">
                         <option label="Choose one"></option>
                         {{-- @foreach ($categories as $cat)
                         <option value="{{ $cat->id }}">{{ ucwords($cat->category_name_en) }}</option>
@@ -299,6 +299,8 @@
 
 
 <script src="{{asset('backend')}}/lib/jquery-2.2.4.min.js"></script>
+
+{{-- Select all sub categories under a category --}}
 <script type="text/javascript">
 $(document).ready(function() {
   $('select[name="category_id"]').on('change', function(){
@@ -309,6 +311,9 @@ $(document).ready(function() {
               type:"GET",
               dataType:"json",
               success:function(data) {
+                // console.log("sub sub", data)
+                // console.log("sub sub", data[0].id)
+               
                 $('select[name="subsubcategory_id"]').html('');
 
                  var d =$('select[name="subcategory_id"]').empty();
@@ -317,7 +322,7 @@ $(document).ready(function() {
                         $('select[name="subcategory_id"]').append('<option value="'+ value.id +'">' + value.subcategory_name_en + '</option>');
 
                     });
-
+                    getSubSubCategory(data[0].id)
               },
 
           });
@@ -327,16 +332,17 @@ $(document).ready(function() {
 
   });
 
-
-
+  // Select all sub sub-categories under a sub-category 
   $('select[name="subcategory_id"]').on('change', function(){
       var subcategory_id = $(this).val();
       if(subcategory_id) {
           $.ajax({
-              url: "{{  url('/admin/sub-subcategory/ajax') }}/"+subcategory_id,
+              url: "{{  url('/admin/subsubcategory/ajax') }}/"+subcategory_id,
               type:"GET",
               dataType:"json",
               success:function(data) {
+                // console.log("sub sub", data)
+                // getSubSubCategory(subcategory_id)
                  var d =$('select[name="subsubcategory_id"]').empty();
                     $.each(data, function(key, value){
 
@@ -357,6 +363,33 @@ $(document).ready(function() {
 
 </script>
 
+<script>
+  function getSubSubCategory(subcategory_id){
+          // var subcategory_id = document.getElementById("subcategory_id")
+          // var subcat_id = subcategory_id.value;
+          console.log(subcategory_id)
+          if(subcategory_id) {
+            $.ajax({
+              url: "{{  url('/admin/subsubcategory/ajax') }}/"+subcategory_id,
+              type:"GET",
+              dataType:"json",
+              success:function(data) {
+                // console.log("sub sub", data)
+                // getSubSubCategory(subcategory_id)
+                 var d =$('select[name="subsubcategory_id"]').empty();
+                    $.each(data, function(key, value){
+
+                        $('select[name="subsubcategory_id"]').append('<option value="'+ value.id +'">' + value.subsubcategory_name_en + '</option>');
+
+                    });
+
+              },
+
+          });
+          } 
+  }
+ 
+  </script>
 
 <script>
 

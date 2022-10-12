@@ -121,5 +121,11 @@ class SubSubCategoryController extends Controller
         'alert-type'=>'success'
     );
     return Redirect()->back()->with($notification);
-            }
+  }
+
+     // Fetch sub sub-categories under a sub-category
+     public function GetSubSubCategory($subcat_id){
+        $subSubCat = SubSubCategory::where('subcategory_id',$subcat_id)->orderBy('subsubcategory_name_en','ASC')->get();
+        return json_encode($subSubCat);
+    }
 }
