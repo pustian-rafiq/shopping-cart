@@ -24,7 +24,7 @@
                 @csrf
                 <div class="form-group">
                   <label class="form-control-label">Select Category: <span class="tx-danger">*</span></label>
-                  <select class="form-control select2-show-search" data-placeholder="Select One" name="category_id">
+                  <select class="form-control select2-show-search" id="category_id" data-placeholder="Select One" name="category_id">
                     <option label="Choose one category"></option>
                     @foreach ($categories as $cat)
                     {{-- <option value="{{ $cat->id }}">{{ ucwords($cat->category_name_en) }}</option> --}}
@@ -75,6 +75,37 @@
 </div><!-- sl-pagebody -->
 
 <script src="{{asset('backend')}}/lib/jquery-2.2.4.min.js"></script>
+<script>
+
+$(document).ready(function(){
+    console.log("first")
+    // var category_id = $(this).val();
+    var category_id = document.getElementById("category_id")
+        var cat_id = category_id.value;
+        console.log(cat_id)
+        if(cat_id) {
+            $.ajax({
+                url: "{{  url('/admin/subcategory/ajax') }}/"+cat_id,
+                type:"GET",
+                dataType:"json",
+                success:function(data) {
+                   console.log(data)
+                   var d =$('select[name="subcategory_id"]').empty();
+                      $.each(data, function(key, value){
+
+                          $('select[name="subcategory_id"]').append('<option value="'+ value.id +'">' + value.subcategory_name_en + '</option>');
+
+                      });
+
+                },
+
+            });
+        } else {
+            alert('danger');
+        }
+});
+
+</script>
 
 <script type="text/javascript">
   $(document).ready(function() {

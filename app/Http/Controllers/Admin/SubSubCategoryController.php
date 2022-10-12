@@ -55,7 +55,7 @@ class SubSubCategoryController extends Controller
             return Redirect()->route('subsubcategory.view')->with($notification);
        }
 
-    //view sub category add page
+    //view sub category edit page
     public function SubSubCategoryEdit($id){
         $categories = Category::all();
         $subsubcategory = SubSubCategory::findOrFail($id);
@@ -65,7 +65,7 @@ class SubSubCategoryController extends Controller
     //Update sub sub category
     public function SubSubCategoryUpdate(Request $request,$id){
         
-        $subcategory = SubCategory::findOrFail($id);
+        $subSubCategory = SubSubCategory::findOrFail($id);
         $request->validate([
             'subsubcategory_name_en' => 'required',
             'subsubcategory_name_bn' => 'required',
@@ -78,8 +78,8 @@ class SubSubCategoryController extends Controller
            'subcategory_id.required' => 'Sub Category is required',
        ]);
 
-            if($subcategory){
-                $result = $subcategory->update([
+            if($subSubCategory){
+                $result = $subSubCategory->update([
                   
                     'subsubcategory_name_en' => $request->subsubcategory_name_en,
                     'subsubcategory_name_bn' => $request->subsubcategory_name_bn,
@@ -94,7 +94,7 @@ class SubSubCategoryController extends Controller
                         'message'=>'Sub subcategory updated Successfully',
                         'alert-type'=>'success'
                     );
-                    return Redirect()->route('category.view')->with($notification);
+                    return Redirect()->route('subsubcategory.view')->with($notification);
                 }else{
                     $notification=array(
                         'message'=>'Something went wrong!',
