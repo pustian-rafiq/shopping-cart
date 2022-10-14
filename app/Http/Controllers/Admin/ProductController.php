@@ -39,7 +39,7 @@ class ProductController extends Controller
         $save_url = 'uploads/products/thumbnail/'.$name_gen;
 
        $product_id = Product::insertGetId([
-            // 'user_id' => Auth::id(),
+            'user_id' => Auth::id(),
             'brand_id' => $request->brand_id,
             'category_id' => $request->category_id,
             'subcategory_id' => $request->subcategory_id,
