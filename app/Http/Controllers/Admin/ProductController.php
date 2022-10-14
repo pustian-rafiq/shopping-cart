@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ProductPostRequest;
 use App\Models\Brand;
 use App\Models\Category;
 use App\Models\MultipleImage;
@@ -26,7 +27,12 @@ class ProductController extends Controller
         return view('admin.product.create', compact('brands','categories'));
     }
     //Store new product
-    public function ProductStore(Request $request){
+    public function ProductStore(ProductPostRequest $request){
+
+            // Retrieve the validated input data...
+          $validated = $request->validated();
+          return $validated;
+
         $image = $request->file('product_thambnail');
         $name_gen=hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
         Image::make($image)->resize(917,1000)->save('uploads/products/thumbnail/'.$name_gen);
