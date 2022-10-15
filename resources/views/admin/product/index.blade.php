@@ -61,19 +61,19 @@
                         @endif
                       </td>
                       <td>
-                        <a href=" " class="btn btn-sm btn-primary" title="edit data"> <i class="fa fa-eye"></i></a>
+                        <a href=" " class="btn btn-sm btn-primary" title="View Product"> <i class="fa fa-eye"></i></a>
                         {{-- @isset(auth()->user()->role->permission['permission']['product']['edit']) --}}
-                        <a href="{{ url('admin/product-edit/'.$item->id) }}" class="btn btn-sm btn-primary" title="edit data"> <i class="fa fa-pencil"></i></a>
+                        <a href="{{ route('product.edit', $item->id) }}" class="btn btn-sm btn-primary" title="Edit Product"> <i class="fa fa-pencil"></i></a>
                         {{-- @endisset --}}
 
                         {{-- @isset(auth()->user()->role->permission['permission']['product']['delete']) --}}
-                        <a href="" class="btn btn-sm btn-danger" id="delete" title="delete data"><i class="fa fa-trash"></i></a>
+                        <a href="" class="btn btn-sm btn-danger" id="delete" title="Delete Product"><i class="fa fa-trash"></i></a>
                         {{-- @endisset --}}
 
                         {{-- @if ($item->status == 1)
-                       <a href="{{ url('admin/product-inactive/'.$item->id) }}" class="btn btn-sm btn-danger" title="inactive"> <i class="fa fa-arrow-down"></i></a>
+                       <a href="{{ url('admin/product-inactive/'.$item->id) }}" class="btn btn-sm btn-danger" title="Inactive Product"> <i class="fa fa-arrow-down"></i></a>
                         @else
-                        <a href="{{ url('admin/product-active/'.$item->id) }}" class="btn btn-sm btn-success" title="active now data"> <i class="fa fa-arrow-up"></i></a>
+                        <a href="{{ url('admin/product-active/'.$item->id) }}" class="btn btn-sm btn-success" title="Active Product"> <i class="fa fa-arrow-up"></i></a>
                       @endif --}}
                       </td>
                     </tr>

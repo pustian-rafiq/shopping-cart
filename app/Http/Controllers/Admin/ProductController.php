@@ -14,8 +14,8 @@ use Illuminate\Support\Facades\Auth;
 use Intervention\Image\Facades\Image;
 class ProductController extends Controller
 {
-      //view products page
-      public function index(){
+    //view products page
+    public function index(){
         $products = Product::latest()->get();
         return view('admin.product.index', compact('products'));
     }
@@ -95,5 +95,13 @@ class ProductController extends Controller
                 'alert-type'=>'success'
             );
             return Redirect()->back()->with($notification);
+      }
+
+     //view product edit page
+     public function ProductEdit($id){
+        $editProduct = Product::findOrFail($id);
+        $categories = Category::latest()->get();
+        $brands = Brand::latest()->get();
+        return view('admin.product.edit', compact('editProduct','brands','categories'));
     }
 }
