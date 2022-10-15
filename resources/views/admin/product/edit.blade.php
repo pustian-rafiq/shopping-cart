@@ -37,7 +37,7 @@
               <div class="col-md-6">
                   <div class="form-group">
                       <label class="form-control-label">Select Category: <span class="tx-danger">*</span></label>
-                      <select class="form-control select2-show-search" data-placeholder="Select One" name="category_id">
+                      <select class="form-control select2-show-search" data-placeholder="Select One" id="category_id" name="category_id">
                         <option label="Choose one"></option>
                         @foreach ($categories as $cat)
                         <option value="{{ $cat->id }}" {{ $editProduct->category_id === $cat->id ? 'selected' : '' }}>{{ ucwords($cat->category_name_en) }}</option>
@@ -52,7 +52,7 @@
               <div class="col-md-6">
                   <div class="form-group">
                       <label class="form-control-label">Select Sub-Category: <span class="tx-danger">*</span></label>
-                      <select class="form-control select2-show-search" id="subcategory_id" data-placeholder="Select One" name="subcategory_id">
+                      <select class="form-control select2-show-search" data-id="{{ $editProduct->subcategory_id}}" id="subcategory_id" data-placeholder="Select One" name="subcategory_id">
                         <option label="Choose one"></option>
                         {{-- @foreach ($categories as $cat)
                         <option value="{{ $cat->id }}">{{ ucwords($cat->category_name_en) }}</option>
@@ -67,7 +67,7 @@
               <div class="col-md-6">
                   <div class="form-group">
                       <label class="form-control-label">Select Sub-SubCategory: <span class="tx-danger">*</span></label>
-                      <select class="form-control select2-show-search" data-placeholder="Select One" name="subsubcategory_id">
+                      <select class="form-control select2-show-search" data-id="{{ $editProduct->subsubcategory_id}}" data-placeholder="Select One" id="subsubcategory_id" name="subsubcategory_id">
                         {{-- <option label="Choose one"></option>
                         @foreach ($categories as $cat)
                         <option value="{{ $cat->id }}">{{ ucwords($cat->category_name_en) }}</option>
@@ -308,6 +308,66 @@
 
 <script src="{{asset('backend')}}/lib/jquery-2.2.4.min.js"></script>
 
+{{-- 
+    Get all sub categories after loading the product edit page
+    Jakhon product edit page load hbe takhon category, sub category and sub subcategory selected dekhabe
+ --}}
+<script>
+
+    $(document).ready(function(){
+        var category_id = document.getElementById("category_id")
+        var subcategory_id = document.getElementById("subcategory_id")
+            var cat_id = category_id.value;
+            var subcat_id = subcategory_id.getAttribute("data-id");
+            if(cat_id) {
+                $.ajax({
+                    url: "{{  url('/admin/subcategory/ajax') }}/"+cat_id,
+                    type:"GET",
+                    dataType:"json",
+                    success:function(data) {
+                        console.log(data)
+                       var d =$('select[name="subcategory_id"]').empty();
+                          $.each(data, function(key, value){
+                              $('select[name="subcategory_id"]').append('<option value="'+ value.id +'" ' + (Number(subcat_id) === value.id ? 'selected="selected"' : '') +' >' + value.subcategory_name_en + '</option>');
+                          });
+                          getSubSubCategory(subcat_id)
+                    },
+    
+                });
+            } 
+    });
+</script>
+
+{{-- Get all sub subcategories after loading the product edit page --}}
+{{-- <script>
+
+    $(document).ready(function(){
+        var subcategory_id = document.getElementById("subcategory_id")
+        var subsubcategory_id = document.getElementById("subsubcategory_id")
+            var subcat_id = subcategory_id.value;
+            var subsubcat_id = subsubcategory_id.getAttribute("data-id");
+            console.log("subcat_id",subcat_id)
+            console.log("subsubcategory_id",subsubcat_id)
+            if(subcat_id) {
+                $.ajax({
+                    url: "{{  url('/admin/subsubcategory/ajax') }}/"+subcat_id,
+                    type:"GET",
+                    dataType:"json",
+                    success:function(data) {
+                       console.log(data)
+                       var d =$('select[name="subcategory_id"]').empty();
+                          $.each(data, function(key, value){
+
+                              $('select[name="subcategory_id"]').append('<option value="'+ value.id +'" ' + (Number(subsubcat_id) === value.id ? 'selected="selected"' : '') +' >' + value.subcategory_name_en + '</option>');
+                          });
+    
+                    },
+    
+                });
+            } 
+    });
+</script> --}}
+
 {{-- Select all sub categories under a category --}}
 <script type="text/javascript">
 $(document).ready(function() {
@@ -371,12 +431,22 @@ $(document).ready(function() {
 
 </script>
 
+{{-- 
+    Get all sub sub categories and selected sub sub category.
+    Jakhon product edit page load hbe takhon category, sub category and sub subcategory selected dekhabe
+    
+--}}
+ 
 <script>
   function getSubSubCategory(subcategory_id){
           // var subcategory_id = document.getElementById("subcategory_id")
           // var subcat_id = subcategory_id.value;
-          console.log(subcategory_id)
-          if(subcategory_id) {
+          var subsubcategory_id = document.getElementById("subsubcategory_id")
+            var subsubcategory_id = subsubcategory_id.getAttribute("data-id");
+
+          console.log("subcategory_id",subcategory_id)
+          console.log("subsubcategory_id",subsubcategory_id)
+          if(subsubcategory_id) {
             $.ajax({
               url: "{{  url('/admin/subsubcategory/ajax') }}/"+subcategory_id,
               type:"GET",
@@ -387,7 +457,7 @@ $(document).ready(function() {
                  var d =$('select[name="subsubcategory_id"]').empty();
                     $.each(data, function(key, value){
 
-                        $('select[name="subsubcategory_id"]').append('<option value="'+ value.id +'">' + value.subsubcategory_name_en + '</option>');
+                        $('select[name="subsubcategory_id"]').append('<option value="'+ value.id +'"' + (Number(subsubcategory_id) === value.id ? 'selected="selected"' : '') +' >' + value.subsubcategory_name_en + '</option>');
 
                     });
 

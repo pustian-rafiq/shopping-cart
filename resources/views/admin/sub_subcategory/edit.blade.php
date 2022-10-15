@@ -75,8 +75,8 @@
 </div><!-- sl-pagebody -->
 
 <script src="{{asset('backend')}}/lib/jquery-2.2.4.min.js"></script>
+{{-- Get all sub categories under a category when loading this edit page--}}
 <script>
-
 $(document).ready(function(){
     console.log("first")
     // var category_id = $(this).val();
@@ -104,9 +104,9 @@ $(document).ready(function(){
             alert('danger');
         }
 });
-
 </script>
 
+{{-- Get sub category when select a category--}}
 <script type="text/javascript">
   $(document).ready(function() {
     $('select[name="category_id"]').on('change', function(){
