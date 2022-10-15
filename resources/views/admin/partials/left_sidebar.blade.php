@@ -44,7 +44,7 @@
       </div><!-- menu-item -->
     </a><!-- sl-menu-link -->
     <ul class="sl-menu-sub nav flex-column">
-      <li class="nav-item"><a href="{{ route('product.view') }}" class="nav-link @yield('showproduct')">Show Products</a></li>
+      <li class="nav-item"><a href="{{ route('product.view') }}" class="nav-link @yield('showproduct')">Manage Products</a></li>
       <li class="nav-item"><a href="{{ route('product.add') }}" class="nav-link @yield('addproduct')">Add Product</a></li>  
       <li class="nav-item"><a href="{{ route('subsubcategory.view') }}" class="nav-link @yield('subsubcategory')">Manage Products</a></li>
     </ul>
