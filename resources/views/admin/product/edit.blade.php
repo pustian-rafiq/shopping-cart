@@ -15,7 +15,7 @@
   <div class="sl-pagebody">
       <div class="card pd-20 pd-sm-40">
         <h6 class="card-body-title">Update product</h6>
-        <form action="{{ route('product.store') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('product.update',$editProduct->id) }}" method="POST">
           @csrf
       <div class="row row-sm">
               <div class="col-md-6">
@@ -54,9 +54,7 @@
                       <label class="form-control-label">Select Sub-Category: <span class="tx-danger">*</span></label>
                       <select class="form-control select2-show-search" data-id="{{ $editProduct->subcategory_id}}" id="subcategory_id" data-placeholder="Select One" name="subcategory_id">
                         <option label="Choose one"></option>
-                        {{-- @foreach ($categories as $cat)
-                        <option value="{{ $cat->id }}">{{ ucwords($cat->category_name_en) }}</option>
-                        @endforeach --}}
+                       
                       </select>
                       @error('subcategory_id')
                           <span class="text-danger">{{ $message }}</span>
@@ -68,10 +66,7 @@
                   <div class="form-group">
                       <label class="form-control-label">Select Sub-SubCategory: <span class="tx-danger">*</span></label>
                       <select class="form-control select2-show-search" data-id="{{ $editProduct->subsubcategory_id}}" data-placeholder="Select One" id="subsubcategory_id" name="subsubcategory_id">
-                        {{-- <option label="Choose one"></option>
-                        @foreach ($categories as $cat)
-                        <option value="{{ $cat->id }}">{{ ucwords($cat->category_name_en) }}</option>
-                        @endforeach --}}
+                        
                       </select>
                       @error('subsubcategory_id')
                           <span class="text-danger">{{ $message }}</span>
@@ -198,30 +193,6 @@
                 @enderror
                 </div>
             </div>
-
-            <div class="col-md-6">
-              <div class="form-group">
-                  <label class="form-control-label">Main Thambnail: <span class="tx-danger">*</span></label>
-                  <input class="form-control" type="file" name="product_thambnail" value="{{ $editProduct->product_thambnail }}" onchange="mainThambUrl(this)">
-                  @error('product_thambnail')
-                  <span class="text-danger">{{ $message }}</span>
-                @enderror
-                <img src="" id="mainThmb">
-                </div>
-            </div>
-
-            <div class="col-md-6">
-              <div class="form-group">
-                  <label class="form-control-label">Multiple_image: <span class="tx-danger">*</span></label>
-                  <input class="form-control" type="file" name="multi_img[]" value="{{ $editProduct->selling_price }}" multiple id="multiImg">
-                  @error('multi_img')
-                  <span class="text-danger">{{ $message }}</span>
-                @enderror
-                </div>
-                <div class="row" id="preview_img" >
-                </div>
-            </div>
-
             <div class="col-md-6">
               <div class="form-group">
                   <label class="form-control-label">Short Description English: <span class="tx-danger">*</span></label>
