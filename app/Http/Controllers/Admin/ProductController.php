@@ -73,7 +73,7 @@ class ProductController extends Controller
 
             ]);
 
-            //////////////////// Multiple image uplod start /////////////////////////////////
+            //////////////////// Multiple image upload start /////////////////////////////////
 
             $images = $request->file('multi_img');
             foreach ($images as $img) {
@@ -165,10 +165,56 @@ class ProductController extends Controller
                     'alert-type'=>'warning'
                 );
                 return Redirect()->back()->with($notification);
-            }
+            }          
+    }
 
+    // update product thumbnail
+    public function ProductThumbnailUpdate(Request $request,$id){
+        $updateProduct = Product::findOrFail($id);
+        $old_image = $request->old_image;
+        unlink($old_image);
 
+        if($updateProduct){
+            $thumbnail_image = $request->file('product_thambnail');
+            $image_name=hexdec(uniqid()).'.'.$thumbnail_image->getClientOriginalExtension();
+            Image::make($thumbnail_image)->resize(917,1000)->save('uploads/products/thumbnail/'.$image_name);
+            $uplodPath = 'uploads/products/thumbnail/'.$image_name;
+            $updateProduct->update([
+                'product_thambnail' => $uplodPath,
+                'updated_at' => Carbon::now(),
+            ]);
+            $notification=array(
+                'message'=>'Product Thambnail Update Successfully',
+                'alert-type'=>'success'
+            );
+            return Redirect()->route('product.view')->with($notification);
+        }
+    }
 
-            
+    // Multiple image update
+    public function ProductMultipleImageUpdate(Request $request){
+        $imgs = $request->multiImg;
+
+        return $imgs;
+        foreach ($imgs as $id => $img) {
+            $imgDel = MultipleImage::findOrFail($id);
+            unlink($imgDel->photo_name);
+            $make_name=hexdec(uniqid()).'.'.$img->getClientOriginalExtension();
+            Image::make($img)->resize(917,1000)->save('uploads/products/multi-image/'.$make_name);
+            $uplodPath = 'uploads/products/multi-image/'.$make_name;
+
+            MultipleImage::where('id',$id)->update([
+            'photo_name' => $uplodPath,
+            'updated_at' => Carbon::now(),
+           ]);
+
+        }
+
+        $notification=array(
+            'message'=>'Product Image Update Success',
+            'alert-type'=>'success'
+        );
+        return Redirect()->back()->with($notification);
+
     }
 }

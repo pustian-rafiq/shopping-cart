@@ -281,9 +281,9 @@
   <div class="sl-pagebody">
       <div class="card pd-20 pd-sm-40">
         <h6 class="card-body-title">Update Product Thumbnail</h6>
-        <form action="{{ route('product.update',$editProduct->id) }}" method="POST">
+        <form action="{{ route('product.thumbnail.update',$editProduct->id) }}" method="POST" enctype="multipart/form-data">
           @csrf
-          <input type="hidden" name="old_img" value="{{ $editProduct->product_thambnail }}">
+          <input type="hidden" name="old_image" value="{{ $editProduct->product_thambnail }}">
           <div class="row row-sm" style="margin-top:30px;">
             <div class="col-md-6">
               <div class="form-group">
@@ -315,14 +315,13 @@
   <div class="sl-pagebody">
       <div class="card pd-20 pd-sm-40">
         <h6 class="card-body-title">Update Product Thumbnail</h6>
-        <form action="{{ route('product.update',$editProduct->id) }}" method="POST">
+        <form action="{{ route('product.multiImage.update') }}" method="POST" enctype="multipart/form-data">
           @csrf
-          <input type="hidden" name="old_img" value="{{ $editProduct->product_thambnail }}">
           <div class="row row-sm" style="margin-top:50px;">
 
             @foreach ($multiple_images as $img)
                 <div class="col-md-3">
-                  <img id="mainThmb" style="border:1px solid black; height:150px; width:150px" src="{{asset($img->photo_name) }}"
+                  <img  style="border:1px solid black; height:150px; width:150px" src="{{asset($img->photo_name) }}"
                   alt="preview image" style="max-height: 250px;">
                   {{-- <img class="" src="{{ asset($img->photo_name) }}" alt="Card image cap" style="height: 150px; width:150px;"> --}}
                   <h5 class="mt-2">
@@ -334,10 +333,10 @@
                   </div>
             
                 </div>
-                  @endforeach
+            @endforeach
           </div>
           <div class="form-layout-footer">
-            <button type="submit" class="btn btn-info">Update Thumbnail</button>
+            <button type="submit" class="btn btn-info">Update Multiple Image</button>
           </div><!-- form-layout-footer -->
         </form>
       </div>
