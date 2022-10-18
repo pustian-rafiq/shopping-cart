@@ -276,6 +276,77 @@
 </div>
 
 
+ 
+
+  <div class="sl-pagebody">
+      <div class="card pd-20 pd-sm-40">
+        <h6 class="card-body-title">Update Product Thumbnail</h6>
+        <form action="{{ route('product.update',$editProduct->id) }}" method="POST">
+          @csrf
+          <input type="hidden" name="old_img" value="{{ $editProduct->product_thambnail }}">
+          <div class="row row-sm" style="margin-top:30px;">
+            <div class="col-md-6">
+              <div class="form-group">
+                  <label class="form-control-label">Main Thambnail: <span class="tx-danger">*</span></label>
+                  <input class="form-control" type="file" name="product_thambnail" value="{{ old('product_thambnail') }}" onchange="mainThambUrl(this)">
+                  @error('product_thambnail')
+                  <span class="text-danger">{{ $message }}</span>
+                @enderror
+                {{-- <img src="" id="mainThmb"> --}}
+                </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <img id="mainThmb" style="border:1px solid black; height:150px; width:150px" src="{{asset($editProduct->product_thambnail) }}"
+                alt="preview image" style="max-height: 250px;">
+                 {{-- <img class="card-img-top" src="{{ asset($editProduct->product_thambnail) }}" id="mainThmb" alt="Card image cap" style="height: 150px; width:150px;"> --}}
+               
+                </div>
+            </div>
+          </div>
+          <div class="form-layout-footer">
+            <button type="submit" class="btn btn-info">Update Thumbnail</button>
+          </div><!-- form-layout-footer -->
+        </form>
+      </div>
+  </div><!-- row -->
+
+  {{-- Update product images --}}
+  <div class="sl-pagebody">
+      <div class="card pd-20 pd-sm-40">
+        <h6 class="card-body-title">Update Product Thumbnail</h6>
+        <form action="{{ route('product.update',$editProduct->id) }}" method="POST">
+          @csrf
+          <input type="hidden" name="old_img" value="{{ $editProduct->product_thambnail }}">
+          <div class="row row-sm" style="margin-top:50px;">
+
+            @foreach ($multiple_images as $img)
+                <div class="col-md-3">
+                  <img id="mainThmb" style="border:1px solid black; height:150px; width:150px" src="{{asset($img->photo_name) }}"
+                  alt="preview image" style="max-height: 250px;">
+                  {{-- <img class="" src="{{ asset($img->photo_name) }}" alt="Card image cap" style="height: 150px; width:150px;"> --}}
+                  <h5 class="mt-2">
+                    <a href="{{ url('admin/product/multiimg/delete/'.$img->id) }}" class="btn btn-sm btn-danger" id="delete" title="delete data"><i class="fa fa-trash"></i></a>
+                  </h5>
+                  <div class="form-group">
+                    <label class="form-control-label">Change Image<span class="tx-danger">*</span></label>
+                    <input class="form-control" type="file" name="multiImg[{{ $img->id }}]" >
+                  </div>
+            
+                </div>
+                  @endforeach
+          </div>
+          <div class="form-layout-footer">
+            <button type="submit" class="btn btn-info">Update Thumbnail</button>
+          </div><!-- form-layout-footer -->
+        </form>
+      </div>
+  </div><!-- row -->
+
+
+ 
+
+
 
 <script src="{{asset('backend')}}/lib/jquery-2.2.4.min.js"></script>
 

@@ -102,7 +102,8 @@ class ProductController extends Controller
         $editProduct = Product::findOrFail($id);
         $categories = Category::latest()->get();
         $brands = Brand::latest()->get();
-        return view('admin.product.edit', compact('editProduct','brands','categories'));
+        $multiple_images = MultipleImage::all();
+        return view('admin.product.edit', compact('editProduct','brands','categories','multiple_images'));
     }
      //Update product
      public function ProductUpdate(ProductUpdateRequest $request,$id){
