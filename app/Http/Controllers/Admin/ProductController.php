@@ -195,13 +195,13 @@ class ProductController extends Controller
     public function ProductMultipleImageUpdate(Request $request){
         $imgs = $request->multiImg;
 
-        return $imgs;
+        // return $request->all();
         foreach ($imgs as $id => $img) {
             $imgDel = MultipleImage::findOrFail($id);
             unlink($imgDel->photo_name);
             $make_name=hexdec(uniqid()).'.'.$img->getClientOriginalExtension();
-            Image::make($img)->resize(917,1000)->save('uploads/products/multi-image/'.$make_name);
-            $uplodPath = 'uploads/products/multi-image/'.$make_name;
+            Image::make($img)->resize(917,1000)->save('uploads/products/multiple_image/'.$make_name);
+            $uplodPath = 'uploads/products/multiple_image/'.$make_name;
 
             MultipleImage::where('id',$id)->update([
             'photo_name' => $uplodPath,

@@ -314,7 +314,7 @@
   {{-- Update product images --}}
   <div class="sl-pagebody">
       <div class="card pd-20 pd-sm-40">
-        <h6 class="card-body-title">Update Product Thumbnail</h6>
+        <h6 class="card-body-title">Update Product Multiple Image</h6>
         <form action="{{ route('product.multiImage.update') }}" method="POST" enctype="multipart/form-data">
           @csrf
           <div class="row row-sm" style="margin-top:50px;">
