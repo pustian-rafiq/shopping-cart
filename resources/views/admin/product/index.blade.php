@@ -54,11 +54,16 @@
                         @endif
                       </td>
                       <td>
-                        @if ($item->status == 1)
+                        {{-- @if ($item->status == 1)
                             <span class="badge badge-pill badge-success">Active</span>
                           @else
                           <span class="badge badge-pill badge-danger">Inactive</span>
-                        @endif
+                        @endif --}}
+                        @if ($item->status == 1)
+                        <a href="{{ route('product.active',$item->id) }}" class="badge badge-pill badge-success" title="Active Product">Active<i class="fa fa-arrow-up"></i></a>
+                        @else
+                        <a href="{{ route('product.inactive',$item->id) }}" class="badge badge-pill badge-danger" title="Inactive Product"> Inactive<i class="fa fa-arrow-down"></i></a>
+                      @endif
                       </td>
                       <td>
                         <a href=" " class="btn btn-sm btn-primary" title="View Product"> <i class="fa fa-eye"></i></a>

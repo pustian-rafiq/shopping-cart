@@ -14,7 +14,10 @@
 
   <div class="sl-pagebody">
       <div class="card pd-20 pd-sm-40">
-        <h6 class="card-body-title">Update product</h6>
+        <div class="">
+          <h5 class="card-title d-inline">Update Product</h5> 
+          <a class="float-right btn btn-primary" href="{{ route('product.view') }}">Back</a>
+        </div>
         <form action="{{ route('product.update',$editProduct->id) }}" method="POST">
           @csrf
       <div class="row row-sm">
