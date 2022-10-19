@@ -325,7 +325,7 @@
                   alt="preview image" style="max-height: 250px;">
                   {{-- <img class="" src="{{ asset($img->photo_name) }}" alt="Card image cap" style="height: 150px; width:150px;"> --}}
                   <h5 class="mt-2">
-                    <a href="{{ url('admin/product/multiimg/delete/'.$img->id) }}" class="btn btn-sm btn-danger" id="delete" title="delete data"><i class="fa fa-trash"></i></a>
+                    <a href="{{ route('product.image.delete', $img->id) }}" class="btn btn-sm btn-danger" id="delete" title="delete data"><i class="fa fa-trash"></i></a>
                   </h5>
                   <div class="form-group">
                     <label class="form-control-label">Change Image<span class="tx-danger">*</span></label>

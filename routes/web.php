@@ -80,7 +80,8 @@ Route::group(['prefix'=>'admin','middleware' =>['admin','auth'],'namespace'=>'Ad
     Route::post('product/update/{id}','ProductController@ProductUpdate')->name('product.update');
     Route::post('product/thumbnail/update/{id}','ProductController@ProductThumbnailUpdate')->name('product.thumbnail.update');
     Route::post('product/multiple-image/update','ProductController@ProductMultipleImageUpdate')->name('product.multiImage.update');
-   
+    Route::get('product/image/delete/{id}','ProductController@ProductImageDelete')->name('product.image.delete');
+
 });
 
 
