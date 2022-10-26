@@ -30,6 +30,11 @@ Route::group(['prefix'=>'admin','middleware' =>['admin','auth'],'namespace'=>'Ad
     // Route::get('dashboard',[UserController::class,'index'])->name('admin.dashboard');
     Route::get('dashboard','AdminController@index')->name('admin.dashboard');
 
+    
+    //Slider routes
+    Route::get('sliders','SliderController@index')->name('slider.view');
+    // Route::get('brands/add','BrandController@BrandAdd')->name('brand.add');
+
     //Profile routes
     Route::get('profile/setting','AdminController@ProfileView')->name('profile.setting');
     Route::post('update/profile','AdminController@UpdateProfile')->name('change.profile');

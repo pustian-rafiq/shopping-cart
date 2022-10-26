@@ -16,6 +16,16 @@
       </div><!-- menu-item -->
 
     </a><!-- sl-menu-link -->
+
+     {{-- Slider Menu --}}
+    <a href="{{ route('slider.view') }}" class="sl-menu-link {{ request()->is('admin/sliders*') ? 'active' : '' }}">
+      <div class="sl-menu-item">
+        <i class="menu-item-icon icon ion-ios-photos-outline tx-20"></i>
+        <span class="menu-item-label">Sliders</span>
+      </div><!-- menu-item -->
+    </a><!-- sl-menu-link -->
+
+    {{-- Brand Menu --}}
     <a href="{{ route('brand.view') }}" class="sl-menu-link {{ request()->is('admin/brands*') ? 'active' : '' }}">
       <div class="sl-menu-item">
         <i class="menu-item-icon icon ion-ios-photos-outline tx-20"></i>

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Auth;
 use Intervention\Image\Facades\Image;
 class CategoryController extends Controller
 {
@@ -21,13 +22,18 @@ class CategoryController extends Controller
 
     //Store new category
     public function CategoryStore(Request $request){
+
+        // $request->merge(["id" => Auth::user()->id]);
+        // return $request->only('category_name_en');
+     
+
         $request->validate([
             'category_name_en' => 'required',
             'category_name_bn' => 'required',
             'category_icon' => 'required',
        ],[
-           'brand_name_en.required' => 'Category name in English is required',
-           'brand_name_bn.required' => 'Category name in Bangla is required'
+           'category_name_en.required' => 'Category name in English is required',
+           'category_name_bn.required' => 'Category name in Bangla is required'
        ]);
 
             Category::insert([
