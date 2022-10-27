@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\ProductPostRequest;
-use App\Http\Requests\ProductUpdateRequest;
+use App\Http\Requests\Product\ProductPostRequest;
+use App\Http\Requests\Product\ProductUpdateRequest;
 use App\Models\Brand;
 use App\Models\Category;
 use App\Models\MultipleImage;

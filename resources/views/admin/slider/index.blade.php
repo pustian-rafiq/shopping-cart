@@ -15,7 +15,7 @@
             <div class="card">
               <div class="card-header">
                 <h5 class="card-title d-inline">Sliders List</h5> 
-                <a class="float-right btn btn-primary" href="{{ route('brand.add') }}">Add New Slider</a>
+                <a class="float-right btn btn-primary" href="{{ route('slider.add') }}">Add New Slider</a>
               </div>
              
               <div class="card-body">

@@ -33,7 +33,8 @@ Route::group(['prefix'=>'admin','middleware' =>['admin','auth'],'namespace'=>'Ad
     
     //Slider routes
     Route::get('sliders','SliderController@index')->name('slider.view');
-    // Route::get('brands/add','BrandController@BrandAdd')->name('brand.add');
+    Route::get('sliders/add','SliderController@SliderAdd')->name('slider.add');
+    Route::post('sliders/store','SliderController@SliderStore')->name('slider.store');
 
     //Profile routes
     Route::get('profile/setting','AdminController@ProfileView')->name('profile.setting');
