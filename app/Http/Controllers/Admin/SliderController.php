@@ -40,7 +40,7 @@ class SliderController extends Controller
 
                 $data['title_en'] = $request->title_en;
                 $data['title_bn'] = $request->title_bn;
-                $data['description_en'] = $request->title_en;
+                $data['description_en'] = $request->description_en;
                 $data['description_bn'] = $request->description_bn;
     
                 if($file = $request->file('slider_image')){
@@ -78,7 +78,7 @@ class SliderController extends Controller
 
                 $data['title_en'] = $request->title_en;
                 $data['title_bn'] = $request->title_bn;
-                $data['description_en'] = $request->title_en;
+                $data['description_en'] = $request->description_en;
                 $data['description_bn'] = $request->description_bn;
 
                 //Unlink image files
@@ -97,7 +97,7 @@ class SliderController extends Controller
             }else{
                 $data['title_en'] = $request->title_en;
                 $data['title_bn'] = $request->title_bn;
-                $data['description_en'] = $request->title_en;
+                $data['description_en'] = $request->description_en;
                 $data['description_bn'] = $request->description_bn;
 
                 $slider->update($data);
@@ -117,9 +117,17 @@ class SliderController extends Controller
         return view('admin.slider.index', compact('sliders'));
     }
    //view slider page
-    public function SliderDelete(Slider $slider){
-        
-        $sliders = Slider::latest()->get();
-        return view('admin.slider.index', compact('sliders'));
+    public function SliderDelete($id){
+
+        $slider = Slider::findOrFail($id);
+        $img = $slider->slider_image;
+        unlink($img);
+
+        $slider->delete();
+        $notification=array(
+         'message'=>'Slider Deleted Successfully',
+         'alert-type'=>'success'
+     );
+     return Redirect()->back()->with($notification);
     }
 }
