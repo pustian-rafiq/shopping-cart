@@ -61,7 +61,7 @@ class BrandController extends Controller
         //view brand add page
         public function BrandUpdate(Request $request,$id){
             
-            $brand = Brand::findOrFail($id)->first();
+            $brand = Brand::findOrFail($id);
             $old_image = $request->old_image;
             $brand_image = $request->file('brand_image');
 
@@ -74,6 +74,7 @@ class BrandController extends Controller
            ]);
 
            if($brand_image){
+                unlink($old_image);
                 $name_gen=hexdec(uniqid()).'.'.$brand_image->getClientOriginalExtension();
                 Image::make($brand_image)->resize(166,110)->save('uploads/brand/'.$name_gen);
                 $save_url = 'uploads/brand/'.$name_gen;

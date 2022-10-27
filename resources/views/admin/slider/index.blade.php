@@ -25,9 +25,7 @@
                         <tr>
                           <th class="wd-30p">Slider Image</th>
                           <th class="wd-25p">Slider Title En</th>
-                          <th class="wd-25p">Slider Title Bn</th>
                           <th class="wd-25p">Slider Description En</th>
-                          <th class="wd-25p">Slider Description Bn</th>
                           <th class="wd-20p">Action</th>
                         </tr>
                       </thead>
@@ -37,15 +35,12 @@
                               <td>
                                 <img src="{{ asset($item->slider_image) }}" alt="" style="width: 80px;">
                               </td>
-                              <td>{{ $item->brand_name_en }}</td>
                               <td>{{ $item->title_en }}</td>
-                              <td>{{ $item->title_bn }}</td>
                               <td>{{ $item->description_en }}</td>
-                              <td>{{ $item->brand_name_bn }}</td>
                               <td>
-                                <a href="{{ route('brand.edit', $item->id) }}" class="btn btn-sm btn-primary" title="edit data"> <i class="fa fa-pencil"></i></a>
+                                <a href="{{ route('slider.edit', $item->id) }}" class="btn btn-sm btn-primary" title="edit data"> <i class="fa fa-pencil"></i></a>
       
-                                <a href="{{ route('brand.delete', $item->id) }}" class="btn btn-sm btn-danger" id="delete" title="delete data"><i class="fa fa-trash"></i></a>
+                                <a href="{{ route('slider.delete', $item->id) }}" class="btn btn-sm btn-danger" id="delete" title="delete data"><i class="fa fa-trash"></i></a>
                               </td>
                             </tr>
                             @endforeach
@@ -54,9 +49,7 @@
                         <tr>
                           <th class="wd-30p">Slider Image</th>
                           <th class="wd-25p">Slider Title En</th>
-                          <th class="wd-25p">Slider Title Bn</th>
                           <th class="wd-25p">Slider Description En</th>
-                          <th class="wd-25p">Slider Description Bn</th>
                           <th class="wd-20p">Action</th>
                           </tr>
                     </tfoot>

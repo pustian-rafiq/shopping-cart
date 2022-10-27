@@ -35,14 +35,8 @@ class SliderController extends Controller
 
      //Store new slider
      public function SliderStore(SliderPostRequest $request){
-       
-            // Retrieve the validated input data...
-            // $validated = $request->validated();
-            //  return $request;
 
-           
             try{
-                // $data =[];
 
                 $data['title_en'] = $request->title_en;
                 $data['title_bn'] = $request->title_bn;
@@ -53,8 +47,7 @@ class SliderController extends Controller
                     $fileData = $this->uploadFile($file, 'uploads/slider/');
                     $data["slider_image"] = $fileData['filePath'];
                 }
-                // return $data;
-                // $this->slider->action('post', $data);
+
                 Slider::create($data);
     
                 $notification=array(
@@ -66,4 +59,67 @@ class SliderController extends Controller
                 return back()->with('error', $e->getMessage());
             }  
        }
+
+   //view slider edit page
+    public function SliderEdit($id){
+        $slider = Slider::findOrFail($id);
+        return view('admin.slider.edit', compact('slider'));
+    }
+
+   //Update slider data
+    public function SliderUpdate(Request $request, $id){
+       
+        $slider = Slider::findOrFail($id);
+        $old_image = $request->file('old_image');
+
+        try{
+
+            if($request->file('slider_image')){
+
+                $data['title_en'] = $request->title_en;
+                $data['title_bn'] = $request->title_bn;
+                $data['description_en'] = $request->title_en;
+                $data['description_bn'] = $request->description_bn;
+
+                //Unlink image files
+                unlink($old_image);
+                //Update image
+                $fileData = $this->uploadFile($request->file('slider_image'), 'uploads/slider/');
+                $data["slider_image"] = $fileData['filePath'];
+           
+                $slider->update($data);
+
+                $notification=array(
+                    'message'=>'Slider Updated Successfully',
+                    'alert-type'=>'success'
+                );
+                return Redirect()->route('slider.view')->with($notification);
+            }else{
+                $data['title_en'] = $request->title_en;
+                $data['title_bn'] = $request->title_bn;
+                $data['description_en'] = $request->title_en;
+                $data['description_bn'] = $request->description_bn;
+
+                $slider->update($data);
+
+                $notification=array(
+                    'message'=>'Slider updated successfully without image',
+                    'alert-type'=>'success'
+                );
+                return Redirect()->route('slider.view')->with($notification);
+              }
+          
+            }catch (\Exception $e) {
+                return back()->with('error', $e->getMessage());
+            }  
+
+
+        return view('admin.slider.index', compact('sliders'));
+    }
+   //view slider page
+    public function SliderDelete(Slider $slider){
+        
+        $sliders = Slider::latest()->get();
+        return view('admin.slider.index', compact('sliders'));
+    }
 }
