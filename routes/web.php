@@ -38,6 +38,8 @@ Route::group(['prefix'=>'admin','middleware' =>['admin','auth'],'namespace'=>'Ad
     Route::get('sliders/edit/{id}','SliderController@SliderEdit')->name('slider.edit');
     Route::post('sliders/update/{id}','SliderController@SliderUpdate')->name('slider.update');
     Route::get('sliders/delete/{id}','SliderController@SliderDelete')->name('slider.delete');
+    Route::get('sliders/active/{id}','SliderController@SliderActive')->name('slider.active');
+    Route::get('sliders/inactive/{id}','SliderController@SliderInactive')->name('slider.inactive');
 
     //Profile routes
     Route::get('profile/setting','AdminController@ProfileView')->name('profile.setting');

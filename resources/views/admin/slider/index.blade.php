@@ -38,9 +38,15 @@
                               <td>{{ $item->title_en }}</td>
                               <td>{{ $item->description_en }}</td>
                               <td>
+                                @if ($item->status == 1)
+                                <a href="{{ route('slider.inactive', $item->id) }}" class="btn btn-sm btn-success" title="Active"> <i class="fa fa-arrow-down"></i></a>
+                                 @else
+                                 <a href="{{ route('slider.active', $item->id) }}" class="btn btn-sm btn-danger" title="Inactive"> <i class="fa fa-arrow-up"></i></a>
+                               @endif
                                 <a href="{{ route('slider.edit', $item->id) }}" class="btn btn-sm btn-primary" title="edit data"> <i class="fa fa-pencil"></i></a>
       
                                 <a href="{{ route('slider.delete', $item->id) }}" class="btn btn-sm btn-danger" id="delete" title="delete data"><i class="fa fa-trash"></i></a>
+                              
                               </td>
                             </tr>
                             @endforeach
