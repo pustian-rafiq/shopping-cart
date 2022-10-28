@@ -238,6 +238,7 @@ class ProductController extends Controller
         $multiImages = MultipleImage::where('product_id',$id)->get();
         foreach ($multiImages as $image){
             unlink($image->photo_name);
+            MultipleImage::where('product_id',$id)->delete();
         }
     
         $notification=array(
