@@ -14,14 +14,18 @@
                <div class="nav-outer">
                   <ul class="nav navbar-nav">
                      <li class="active dropdown yamm-fw">
-                        <a href="{{ url('/') }}" data-hover="dropdown" class="dropdown-toggle" data-toggle="dropdown">Home</a>
+                        <a href="{{ url('/') }}" data-hover="dropdown" class="dropdown-toggle" data-toggle="dropdown">
+                          {{ session()->get('language') === 'bangla' ? 'হোম' : 'Home'}}
+                        </a>
                      </li>
                      {{-- Shows all categories, sub-categories and sub-sub-categories --}}
 
                      @foreach ($categories as $category)
                         
                      <li class="dropdown yamm mega-menu">
-                        <a href="home.html" data-hover="dropdown" class="dropdown-toggle" data-toggle="dropdown">{{ $category->category_name_en }}</a>
+                        <a href="home.html" data-hover="dropdown" class="dropdown-toggle" data-toggle="dropdown">
+                           {{ session()->get('language') === 'bangla' ? $category->category_name_bn : $category->category_name_en }}
+                        </a>
                         <ul class="dropdown-menu container">
                            <li>
                               <div class="yamm-content ">
@@ -35,14 +39,20 @@
                                        
 
                                     <div class="col-xs-12 col-sm-6 col-md-2 col-menu">
-                                       <h2 class="title">{{ $subcategory->subcategory_name_en}}</h2>
+                                       <h2 class="title">
+                                          {{ session()->get('language') === 'bangla' ? $subcategory->subcategory_name_bn : $subcategory->subcategory_name_en}}
+                                       </h2>
                                        <ul class="links">
                                           {{-- Show all sub sub-categories --}}
                                           @php
                                             $sub_subcategories = App\Models\SubSubCategory::where('subcategory_id', $subcategory->id)->orderBy('subsubcategory_name_en')->get();
                                           @endphp
                                           @foreach ($sub_subcategories as $sub_subcategory)
-                                           <li><a href="#">{{ $sub_subcategory->subsubcategory_name_en }}</a></li>
+                                           <li>
+                                             <a href="#">
+                                               {{session()->get('language') === 'bangla' ? $sub_subcategory->subsubcategory_name_bn : $sub_subcategory->subsubcategory_name_en }}
+                                            </a>
+                                           </li>
                                           @endforeach
                                      
 

@@ -20,17 +20,30 @@
                    <div class="control-group">
                       <ul class="categories-filter animate-dropdown">
                          <li class="dropdown">
-                            <a class="dropdown-toggle"  data-toggle="dropdown" href="category.html">Categories <b class="caret"></b></a>
+                            <a class="dropdown-toggle"  data-toggle="dropdown" href="category.html">{{ session()->get('language') === 'bangla' ? 'ক্যাটাগরিস' : 'Categories'}} <b class="caret"></b></a>
                             <ul class="dropdown-menu" role="menu" >
-                               <li class="menu-header">Computer</li>
-                               <li role="presentation"><a role="menuitem" tabindex="-1" href="category.html">- Clothing</a></li>
-                               <li role="presentation"><a role="menuitem" tabindex="-1" href="category.html">- Electronics</a></li>
-                               <li role="presentation"><a role="menuitem" tabindex="-1" href="category.html">- Shoes</a></li>
-                               <li role="presentation"><a role="menuitem" tabindex="-1" href="category.html">- Watches</a></li>
+                              @foreach ($categories as $category)
+                              {{-- Show category --}}
+                              <li class="menu-header"> {{ session()->get('language') === 'bangla' ? $category->category_name_bn : $category->category_name_en }}</li>
+                              
+                              {{-- Show sub category --}}
+                               @php
+                                $subcategories = App\Models\SubCategory::where('category_id', $category->id)->orderBy('subcategory_name_en')->get();
+                               @endphp
+                            @foreach ($subcategories as $subcategory)
+                              <li role="presentation">
+                                 <a role="menuitem" tabindex="-1" href="category.html">
+                                    -  {{ session()->get('language') === 'bangla' ? $subcategory->subcategory_name_bn : $subcategory->subcategory_name_en}}
+                                 </a>
+                              </li>
+                              
+                              @endforeach
+                            @endforeach
+                              
                             </ul>
                          </li>
                       </ul>
-                      <input class="search-field" placeholder="Search here..." />
+                      <input class="search-field" placeholder="{{session()->get('language') === 'bangla' ? 'এখানে খোঁজ করুন...' : 'Search here....'}}" />
                       <a class="search-button" href="#" ></a>    
                    </div>
                 </form>
@@ -49,7 +62,7 @@
                       </div>
                       <div class="basket-item-count"><span class="count">2</span></div>
                       <div class="total-price-basket">
-                         <span class="lbl">cart -</span>
+                         <span class="lbl">{{ session()->get('language') === 'bangla' ? 'কার্ট' : 'Cart'}} -</span>
                          <span class="total-price">
                          <span class="sign">$</span><span class="value">600.00</span>
                          </span>

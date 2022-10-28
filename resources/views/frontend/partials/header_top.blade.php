@@ -4,9 +4,9 @@
 			<div class="cnt-account">
 				<ul class="list-unstyled">
 					<li><a href="#"><i class="icon fa fa-user"></i>{{ session()->get('language') === 'bangla' ? 'আমার প্রোফাইল' : 'My Account' }}</a></li>
-					<li><a href="#"><i class="icon fa fa-heart"></i>Wishlist</a></li>
-					<li><a href="#"><i class="icon fa fa-shopping-cart"></i>My Cart</a></li>
-					<li><a href="#"><i class="icon fa fa-check"></i>Checkout</a></li>
+					<li><a href="#"><i class="icon fa fa-heart"></i>{{ session()->get('language') === 'bangla' ? 'উইশলিস্ট' : 'Wishlist'}}</a></li>
+					<li><a href="#"><i class="icon fa fa-shopping-cart"></i>{{ session()->get('language') === 'bangla' ?'আমার কার্ট' : 'My Cart'}}</a></li>
+					<li><a href="#"><i class="icon fa fa-check"></i>{{ session()->get('language') === 'bangla' ?'চেকআউট' : 'Checkout'}}</a></li>
 		 
 						@auth
 						<li><a href="{{ route('user.dashboard') }}" > </i>Dashboard</a> </li>
@@ -18,7 +18,7 @@
 							@csrf
 						 </form>
 						@else
-						<li><a href="{{ route('login') }}"><i class="icon fa fa-lock"></i>Login/Register</a></li>
+						<li><a href="{{ route('login') }}"><i class="icon fa fa-lock"></i>{{ session()->get('language') === 'bangla' ?' লগিন/রেজিস্টার' : '}Login/Register'}}</a></li>
 						@endauth
 						
 			 
