@@ -23,6 +23,9 @@ Auth::routes();
 
 // =========================Frontend routes=========================================
 
+//Language routes here
+Route::get('language/english','Frontend\LanguageController@EnglishLanguage')->name('language.english');
+Route::get('language/bangla','Frontend\LanguageController@BanglaLanguage')->name('language.bangla');
 
 
 // =========================Admin routes=========================================

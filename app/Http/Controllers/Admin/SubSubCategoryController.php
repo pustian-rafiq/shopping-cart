@@ -78,7 +78,7 @@ class SubSubCategoryController extends Controller
            'subcategory_id.required' => 'Sub Category is required',
        ]);
 
-            if($subSubCategory){
+          
                 $result = $subSubCategory->update([
                   
                     'subsubcategory_name_en' => $request->subsubcategory_name_en,
@@ -102,14 +102,6 @@ class SubSubCategoryController extends Controller
                     );
                     return Redirect()->back()->with($notification);
                 }
-
-            }else{
-                $notification=array(
-                    'message'=>'Something went wrong!',
-                    'alert-type'=>'warning'
-                );
-                return Redirect()->back()->with($notification);
-            }
         }
     //Delete a brand
     public function SubSubCategoryDelete($id) {

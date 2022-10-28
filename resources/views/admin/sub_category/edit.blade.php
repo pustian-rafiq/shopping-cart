@@ -20,7 +20,7 @@
               <a class="float-right btn btn-primary" href="{{ route('category.view') }}">View Subcategories</a>
             </div>
               <div class="card-body">
-                <form action="{{ route('subcategory.store') }}" method="POST" >
+                <form action="{{ route('subcategory.update',$subcategory->id) }}" method="POST" >
                   @csrf
                   <div class="form-group">
                     <label class="form-control-label">Select Category: <span class="tx-danger">*</span></label>

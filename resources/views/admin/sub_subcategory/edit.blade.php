@@ -36,8 +36,8 @@
                   @enderror
                 </div>
                 <div class="form-group">
-                  <label class="form-control-label">Select Category: <span class="tx-danger">*</span></label>
-                  <select class="form-control select2-show-search" data-placeholder="Select One" name="subcategory_id">
+                  <label class="form-control-label">Select Sub-Category: <span class="tx-danger">*</span></label>
+                  <select class="form-control select2-show-search" data-id="{{ $subsubcategory->subcategory_id}}" data-placeholder="Select One" id="subcategory_id" name="subcategory_id">
                     <option label="Choose one sub category"></option>
                     
                   </select>
@@ -80,6 +80,9 @@
 $(document).ready(function(){
     console.log("first")
     // var category_id = $(this).val();
+    var subcategory_id = document.getElementById("subcategory_id")
+    var subcategory_id = subcategory_id.getAttribute("data-id");
+
     var category_id = document.getElementById("category_id")
         var cat_id = category_id.value;
         console.log(cat_id)
@@ -92,8 +95,8 @@ $(document).ready(function(){
                    console.log(data)
                    var d =$('select[name="subcategory_id"]').empty();
                       $.each(data, function(key, value){
-
-                          $('select[name="subcategory_id"]').append('<option value="'+ value.id +'">' + value.subcategory_name_en + '</option>');
+                        $('select[name="subcategory_id"]').append('<option value="'+ value.id +'"' + (Number(subcategory_id) === value.id ? 'selected="selected"' : '') +' >' +  value.subcategory_name_en + '</option>');
+                          // $('select[name="subcategory_id"]').append('<option value="'+ value.id +'">' + value.subcategory_name_en + '</option>');
 
                       });
 
@@ -120,7 +123,7 @@ $(document).ready(function(){
                   // console.log(data)
                    var d =$('select[name="subcategory_id"]').empty();
                       $.each(data, function(key, value){
-
+                     
                           $('select[name="subcategory_id"]').append('<option value="'+ value.id +'">' + value.subcategory_name_en + '</option>');
 
                       });

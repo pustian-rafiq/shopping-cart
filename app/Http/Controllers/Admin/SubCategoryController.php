@@ -71,7 +71,7 @@ class SubCategoryController extends Controller
            'subcategory_name_bn.required' => 'Sub Category name in Bangla is required'
        ]);
 
-            if($subcategory){
+    
                 $result = $subcategory->update([
                   
                         'subcategory_name_en' => $request->subcategory_name_en,
@@ -86,7 +86,7 @@ class SubCategoryController extends Controller
                         'message'=>'Subcategory updated Successfully',
                         'alert-type'=>'success'
                     );
-                    return Redirect()->route('category.view')->with($notification);
+                    return Redirect()->route('subcategory.view')->with($notification);
                 }else{
                     $notification=array(
                         'message'=>'Something went wrong!',
@@ -95,13 +95,7 @@ class SubCategoryController extends Controller
                     return Redirect()->back()->with($notification);
                 }
 
-            }else{
-                $notification=array(
-                    'message'=>'Something went wrong!',
-                    'alert-type'=>'warning'
-                );
-                return Redirect()->back()->with($notification);
-            }
+         
         }
         //Delete a sub category
         public function SubCategoryDelete($id) {
