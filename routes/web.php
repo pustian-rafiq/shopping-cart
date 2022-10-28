@@ -95,6 +95,7 @@ Route::group(['prefix'=>'admin','middleware' =>['admin','auth'],'namespace'=>'Ad
     Route::post('product/thumbnail/update/{id}','ProductController@ProductThumbnailUpdate')->name('product.thumbnail.update');
     Route::post('product/multiple-image/update','ProductController@ProductMultipleImageUpdate')->name('product.multiImage.update');
     Route::get('product/image/delete/{id}','ProductController@ProductImageDelete')->name('product.image.delete');
+    Route::get('product/delete/{id}','ProductController@ProductDelete')->name('product.delete');
     Route::get('product/active/{id}','ProductController@ProductInactive')->name('product.active');
     Route::get('product/inactive/{id}','ProductController@ProductActive')->name('product.inactive');
 

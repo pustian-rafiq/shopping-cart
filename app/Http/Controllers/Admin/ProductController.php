@@ -94,7 +94,7 @@ class ProductController extends Controller
                 'message'=>'Product Added Success',
                 'alert-type'=>'success'
             );
-            return Redirect()->back()->with($notification);
+            return Redirect()->route('product.view')->with($notification);
       }
 
      //view product edit page
@@ -228,6 +228,25 @@ class ProductController extends Controller
      );
      return Redirect()->back()->with($notification);
     }
+
+    // Delete product
+    public function ProductDelete($id){
+        $product = Product::findOrFail($id);
+        unlink($product->product_thambnail);
+        $product->delete();
+
+        $multiImages = MultipleImage::where('product_id',$id)->get();
+        foreach ($multiImages as $image){
+            unlink($image->photo_name);
+        }
+    
+        $notification=array(
+         'message'=>'Product Deleted Successfully',
+         'alert-type'=>'success'
+     );
+     return Redirect()->back()->with($notification);
+    }
+
     //product Active
     public function ProductInactive($id){
         $product = Product::findOrFail($id);

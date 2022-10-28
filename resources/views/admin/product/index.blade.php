@@ -72,7 +72,7 @@
                         {{-- @endisset --}}
 
                         {{-- @isset(auth()->user()->role->permission['permission']['product']['delete']) --}}
-                        <a href="" class="btn btn-sm btn-danger" id="delete" title="Delete Product"><i class="fa fa-trash"></i></a>
+                        <a href="{{ route('product.delete', $item->id) }}" class="btn btn-sm btn-danger" id="delete" title="Delete Product"><i class="fa fa-trash"></i></a>
                         {{-- @endisset --}}
 
                         {{-- @if ($item->status == 1)
