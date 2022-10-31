@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\Slider;
 use App\Models\SubCategory;
 use App\Models\SubSubCategory;
 use Illuminate\Http\Request;
@@ -15,8 +16,9 @@ class FrontendController extends Controller
         $categories = Category::orderBy('category_name_en', 'ASC')->get();
         $subcategories = SubCategory::orderBy('subcategory_name_en', 'ASC')->get();
         $sub_subcategories = SubSubCategory::orderBy('subsubcategory_name_en', 'ASC')->get();
+        $sliders = Slider::where('status', 1)->latest()->take(5)->get();
 
-        return view('frontend.index', compact('categories','subcategories','sub_subcategories'));
+        return view('frontend.index', compact('categories','subcategories','sub_subcategories','sliders'));
     }
 
     //Fetch all categories
