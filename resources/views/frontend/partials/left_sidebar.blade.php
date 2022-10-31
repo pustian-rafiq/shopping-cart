@@ -5,7 +5,7 @@
 
       @foreach ($categories as $category)
         <li class="dropdown menu-item">
-           <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon fa fa-shopping-bag" aria-hidden="true"></i>
+           <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon {{$category->category_icon}}" aria-hidden="true"></i>
             {{ session()->get('language') === 'bangla' ? $category->category_name_bn : $category->category_name_en }}
           </a>
            <ul class="dropdown-menu mega-menu">

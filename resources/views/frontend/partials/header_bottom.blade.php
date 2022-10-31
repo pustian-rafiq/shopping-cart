@@ -22,6 +22,9 @@
                          <li class="dropdown">
                             <a class="dropdown-toggle"  data-toggle="dropdown" href="category.html">{{ session()->get('language') === 'bangla' ? 'ক্যাটাগরিস' : 'Categories'}} <b class="caret"></b></a>
                             <ul class="dropdown-menu" role="menu" >
+                              @php
+                                 $categories = App\Models\Category::orderBy('category_name_en')->get();
+                              @endphp
                               @foreach ($categories as $category)
                               {{-- Show category --}}
                               <li class="menu-header"> {{ session()->get('language') === 'bangla' ? $category->category_name_bn : $category->category_name_en }}</li>

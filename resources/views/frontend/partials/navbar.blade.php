@@ -19,7 +19,9 @@
                         </a>
                      </li>
                      {{-- Shows all categories, sub-categories and sub-sub-categories --}}
-
+                     @php
+                     $categories = App\Models\Category::orderBy('category_name_en')->get();
+                  @endphp
                      @foreach ($categories as $category)
                         
                      <li class="dropdown yamm mega-menu">

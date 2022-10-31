@@ -18,7 +18,7 @@
 							@csrf
 						 </form>
 						@else
-						<li><a href="{{ route('login') }}"><i class="icon fa fa-lock"></i>{{ session()->get('language') === 'bangla' ?' লগিন/রেজিস্টার' : '}Login/Register'}}</a></li>
+						<li><a href="{{ route('login') }}"><i class="icon fa fa-lock"></i>{{ session()->get('language') === 'bangla' ?' লগিন/রেজিস্টার' : 'Login/Register'}}</a></li>
 						@endauth
 						
 			 
