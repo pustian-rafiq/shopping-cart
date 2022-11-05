@@ -1,0 +1,1 @@
+1. Discount price showing problem-- change circle color, discount and sell price data type

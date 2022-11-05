@@ -1,6 +1,16 @@
 @extends('frontend.frontend_master')
 
 @section('front_content')
+
+@php
+function bn_price($str)
+{
+    $en = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
+    $bn = ['১', '২', '৩', '৪', '৫', '৬', '৭', '৮', '৯', '০'];
+    $str = str_replace($en, $bn, $str);
+    return $str;
+}
+@endphp
   <!-- ============================================== SIDEBAR ============================================== -->	
   <div class="col-xs-12 col-sm-12 col-md-3 sidebar">
    <!-- ================================== Left sidebar start ================================== -->
@@ -59,11 +69,11 @@
  <!-- ============================================== SCROLL TABS ============================================== -->
  <div id="product-tabs-slider" class="scroll-tabs outer-top-vs wow fadeInUp">
     <div class="more-info-tab clearfix ">
-       <h3 class="new-product-title pull-left">New Products</h3>
+       <h3 class="new-product-title pull-left">{{ session()->get('language') === 'bangla' ? 'নতুন পণ্যসমূহ' : 'New Products' }}</h3>
        <ul class="nav nav-tabs nav-tab-line pull-right" id="new-products-1">
-          <li class="active"><a data-transition-type="backSlide" href="#all" data-toggle="tab">All</a></li>
+          <li class="active"><a data-transition-type="backSlide" href="#all" data-toggle="tab"> {{ session()->get('language') === 'bangla' ? 'সকল' : 'All' }}</a></li>
           @foreach ($categories as  $category)
-             <li><a data-transition-type="backSlide" href="#category-{{ $category->id}}" data-toggle="tab">{{ $category->category_name_en }}</a></li>
+             <li><a data-transition-type="backSlide" href="#category-{{ $category->id}}" data-toggle="tab">  {{ session()->get('language') === 'bangla' ? $category->category_name_bn : $category->category_name_en }}</a></li>
           @endforeach
           {{-- <li><a data-transition-type="backSlide" href="#laptop" data-toggle="tab">Electronics</a></li>
           <li><a data-transition-type="backSlide" href="#apple" data-toggle="tab">Shoes</a></li> --}}
@@ -74,6 +84,7 @@
        <div class="tab-pane in active" id="all">
           <div class="product-slider">
              <div class="owl-carousel home-owl-carousel custom-carousel owl-theme" data-item="4">
+               {{-- Show all products --}}
                @foreach ($products as $product)
  
                   <div class="item item-carousel">
@@ -83,18 +94,30 @@
                               <div class="image">
                                  <a href="detail.html"><img  src="{{ asset($product->product_thambnail)}}" alt=""></a>
                               </div>
-                              <!-- /.image -->			
-                              <div class="tag new"><span>new</span></div>
+                              <!-- /.image -->		
+                              @php
+                                 $amount = $product->selling_price - $product->discount_price;
+                                 $discount = ($product->discount_price / $product->selling_price) * 100;
+                              @endphp	
+                              @if ($product->discount_price == NULL)
+                              <div class="tag new"><span>{{ session()->get('language') === 'bangla' ? 'নতুন' : 'New' }}</span></div>
+                              @else
+                              <div class="tag new"><span>{{ session()->get('language') === 'bangla' ? bn_price(round($discount)) : round($discount) }}%</span></div>
+                              @endif
+                               
                            </div>
                            <!-- /.product-image -->
                            <div class="product-info text-left">
-                              <h3 class="name"><a href="detail.html">{{ substr($product->product_name_en,0,10) }}</a></h3>
+                              <h3 class="name"><a href="detail.html">{{ session()->get('language') === 'bangla' ? substr($product->product_name_bn,0,10) : substr($product->product_name_en,0,10) }}</a></h3>
                               <div class="rating rateit-small"></div>
                               <div class="description"></div>
                               <div class="product-price">	
-                                 <span class="price">
-                                 $450.99				</span>
-                                 <span class="price-before-discount">$ 800</span>
+                                 @if ($product->discount_price == NULL)
+                                 <span class="price"> ${{ session()->get('language') === 'bangla' ? bn_price(round($product->selling_price)) : $product->selling_price }}</span>
+                                @else
+                                   <span class="price"> ${{ session()->get('language') === 'bangla' ? bn_price(round($amount)) : round($amount) }}</span>
+                                   <span class="price-before-discount">${{ session()->get('language') === 'bangla' ? bn_price(round($product->selling_price)) : round($product->selling_price) }}</span>
+                                @endif
                               </div>
                               <!-- /.product-price -->
                            </div>
@@ -155,17 +178,30 @@
                                <a href="detail.html"><img  src="{{ asset($categoryProduct->product_thambnail)}}" alt=""></a>
                             </div>
                             <!-- /.image -->			
-                            <div class="tag sale"><span>sale</span></div>
+                            {{-- <div class="tag sale"><span>sale</span></div> --}}
+                            @php
+                              $amount = $categoryProduct->selling_price - $categoryProduct->discount_price;
+                              $discount = ($categoryProduct->discount_price / $categoryProduct->selling_price) * 100;
+                              @endphp	
+                              @if ($product->discount_price == NULL)
+                              <div class="tag new"><span>{{ session()->get('language') === 'bangla' ? 'নতুন' : 'New' }}</span></div>
+                              @else
+                              <div class="tag new"><span>{{ session()->get('language') === 'bangla' ? bn_price(round($discount)) : round($discount) }}%</span></div>
+                           @endif
+                           {{-- ${{ bn_price($product->selling_price) }} --}}
                          </div>
                          <!-- /.product-image -->
                          <div class="product-info text-left">
-                            <h3 class="name"><a href="detail.html">{{ $categoryProduct->product_name_en }}</a></h3>
+                            <h3 class="name"><a href="detail.html">{{ session()->get('language') === 'bangla' ? substr($categoryProduct->product_name_bn,0,10) : substr($categoryProduct->product_name_en,0,10) }}</a></h3>
                             <div class="rating rateit-small"></div>
                             <div class="description"></div>
                             <div class="product-price">	
-                               <span class="price">
-                               $450.99				</span>
-                               <span class="price-before-discount">$ 800</span>
+                              @if ($product->discount_price == NULL)
+                               <span class="price"> ${{ session()->get('language') === 'bangla' ? bn_price(round($categoryProduct->selling_price)) : $categoryProduct->selling_price }}</span>
+                              @else
+                                 <span class="price"> ${{ session()->get('language') === 'bangla' ? bn_price(round($amount)) : round($amount) }}</span>
+                                 <span class="price-before-discount">${{ session()->get('language') === 'bangla' ? bn_price(round($categoryProduct->selling_price)) : round($categoryProduct->selling_price) }}</span>
+                              @endif
                             </div>
                             <!-- /.product-price -->
                          </div>
