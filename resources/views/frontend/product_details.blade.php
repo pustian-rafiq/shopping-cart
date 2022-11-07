@@ -28,7 +28,7 @@ function bn_price($str)
           <ul class="list-inline list-unstyled">
              <li><a href="#">Home</a></li>
              <li><a href="#">Clothing</a></li>
-             <li class='active'>Floral Print Buttoned</li>
+             <li class='active'>{{session()->get('language') === 'bangla' ? substr($productDetails->product_name_bn,0,20) : substr($productDetails->product_name_en,0,20)}}</li>
           </ul>
        </div>
        <!-- /.breadcrumb-inner -->
@@ -288,109 +288,29 @@ function bn_price($str)
                    <div class="col-xs-12 col-sm-6 col-md-5 gallery-holder">
                       <div class="product-item-holder size-big single-product-gallery small-gallery">
                          <div id="owl-single-product">
-                            <div class="single-product-gallery-item" id="slide1">
-                               <a data-lightbox="image-1" data-title="Gallery" href="{{ asset('frontend/images/products/p8.jpg')}}">
-                               <img class="img-responsive" alt="" src="assets/images/blank.gif" data-echo="{{ asset('frontend/images/products/p8.jpg')}}" />
-                               </a>
-                            </div>
-                            <!-- /.single-product-gallery-item -->
-                            <div class="single-product-gallery-item" id="slide2">
-                               <a data-lightbox="image-1" data-title="Gallery" href="assets/images/products/p9.jpg">
-                               <img class="img-responsive" alt="" src="assets/images/blank.gif" data-echo="{{ asset('frontend/images/products/p9.jpg')}}" />
-                               </a>
-                            </div>
-                            <!-- /.single-product-gallery-item -->
-                            <div class="single-product-gallery-item" id="slide3">
-                               <a data-lightbox="image-1" data-title="Gallery" href="assets/images/products/p10.jpg">
-                               <img class="img-responsive" alt="" src="assets/images/blank.gif" data-echo="{{ asset('frontend/images/products/p10.jpg')}}" />
-                               </a>
-                            </div>
-                            <!-- /.single-product-gallery-item -->
-                            <div class="single-product-gallery-item" id="slide4">
-                               <a data-lightbox="image-1" data-title="Gallery" href="assets/images/products/p11.jpg">
-                               <img class="img-responsive" alt="" src="assets/images/blank.gif" data-echo="{{ asset('frontend/images/products/p11.jpg')}}" />
-                               </a>
-                            </div>
-                            <!-- /.single-product-gallery-item -->
-                            <div class="single-product-gallery-item" id="slide5">
-                               <a data-lightbox="image-1" data-title="Gallery" href="assets/images/products/p12.jpg">
-                               <img class="img-responsive" alt="" src="assets/images/blank.gif" data-echo="{{ asset('frontend/images/products/p12.jpg')}}" />
-                               </a>
-                            </div>
-                            <!-- /.single-product-gallery-item -->
-                            <div class="single-product-gallery-item" id="slide6">
-                               <a data-lightbox="image-1" data-title="Gallery" href="assets/images/products/p13.jpg">
-                               <img class="img-responsive" alt="" src="assets/images/blank.gif" data-echo="{{ asset('frontend/images/products/p13.jpg')}}" />
-                               </a>
-                            </div>
-                            <!-- /.single-product-gallery-item -->
-                            <div class="single-product-gallery-item" id="slide7">
-                               <a data-lightbox="image-1" data-title="Gallery" href="assets/images/products/p14.jpg">
-                               <img class="img-responsive" alt="" src="assets/images/blank.gif" data-echo="{{ asset('frontend/images/products/p14.jpg')}}" />
-                               </a>
-                            </div>
-                            <!-- /.single-product-gallery-item -->
-                            <div class="single-product-gallery-item" id="slide8">
-                               <a data-lightbox="image-1" data-title="Gallery" href="assets/images/products/p15.jpg">
-                               <img class="img-responsive" alt="" src="assets/images/blank.gif" data-echo="{{ asset('frontend/images/products/p15.jpg')}}" />
-                               </a>
-                            </div>
-                            <!-- /.single-product-gallery-item -->
-                            <div class="single-product-gallery-item" id="slide9">
-                               <a data-lightbox="image-1" data-title="Gallery" href="assets/images/products/p16.jpg">
-                               <img class="img-responsive" alt="" src="assets/images/blank.gif" data-echo="{{ asset('frontend/images/products/p16.jpg')}}" />
-                               </a>
-                            </div>
-                            <!-- /.single-product-gallery-item -->
+                           
+                            @foreach ($productDetails->multiple_images as $productImage)
+                                <div class="single-product-gallery-item" id="slide{{$productImage->id}}">
+                                    <a data-lightbox="image-1" data-title="Gallery" href="{{$productImage->id}}">
+                                    <img class="img-responsive" alt="" src="{{  asset($productImage->photo_name)}}" data-echo="{{ asset($productImage->photo_name)}}" />
+                                    </a>
+                                </div>
+                                <!-- /.single-product-gallery-item -->
+                            @endforeach
+                          
+             
                          </div>
                          <!-- /.single-product-slider -->
                          <div class="single-product-gallery-thumbs gallery-thumbs">
                             <div id="owl-single-product-thumbnails">
-                               <div class="item">
-                                  <a class="horizontal-thumb active" data-target="#owl-single-product" data-slide="1" href="#slide1">
-                                  <img class="img-responsive" width="85" alt="" src="assets/images/blank.gif" data-echo="{{ asset('frontend/images/products/p17.jpg')}}" />
-                                  </a>
-                               </div>
-                               <div class="item">
-                                  <a class="horizontal-thumb" data-target="#owl-single-product" data-slide="2" href="#slide2">
-                                  <img class="img-responsive" width="85" alt="" src="assets/images/blank.gif" data-echo="{{ asset('frontend/images/products/p18.jpg')}}"/>
-                                  </a>
-                               </div>
-                               <div class="item">
-                                  <a class="horizontal-thumb" data-target="#owl-single-product" data-slide="3" href="#slide3">
-                                  <img class="img-responsive" width="85" alt="" src="assets/images/blank.gif" data-echo="{{ asset('frontend/images/products/p19.jpg')}}" />
-                                  </a>
-                               </div>
-                               <div class="item">
-                                  <a class="horizontal-thumb" data-target="#owl-single-product" data-slide="4" href="#slide4">
-                                  <img class="img-responsive" width="85" alt="" src="assets/images/blank.gif" data-echo="{{ asset('frontend/images/products/p20.jp')}}g" />
-                                  </a>
-                               </div>
-                               <div class="item">
-                                  <a class="horizontal-thumb" data-target="#owl-single-product" data-slide="5" href="#slide5">
-                                  <img class="img-responsive" width="85" alt="" src="assets/images/blank.gif" data-echo="{{ asset('frontend/images/products/p21.jpg')}}" />
-                                  </a>
-                               </div>
-                               <div class="item">
-                                  <a class="horizontal-thumb" data-target="#owl-single-product" data-slide="6" href="#slide6">
-                                  <img class="img-responsive" width="85" alt="" src="assets/images/blank.gif" data-echo="{{ asset('frontend/images/products/p22.jpg')}}" />
-                                  </a>
-                               </div>
-                               <div class="item">
-                                  <a class="horizontal-thumb" data-target="#owl-single-product" data-slide="7" href="#slide7">
-                                  <img class="img-responsive" width="85" alt="" src="assets/images/blank.gif" data-echo="{{ asset('frontend/images/products/p23.jpg')}}" />
-                                  </a>
-                               </div>
-                               <div class="item">
-                                  <a class="horizontal-thumb" data-target="#owl-single-product" data-slide="8" href="#slide8">
-                                  <img class="img-responsive" width="85" alt="" src="assets/images/blank.gif" data-echo="{{ asset('frontend/images/products/p24.jpg')}}" />
-                                  </a>
-                               </div>
-                               <div class="item">
-                                  <a class="horizontal-thumb" data-target="#owl-single-product" data-slide="9" href="#slide9">
-                                  <img class="img-responsive" width="85" alt="" src="assets/images/blank.gif" data-echo="{{ asset('frontend/images/products/p25.jpg')}}" />
-                                  </a>
-                               </div>
+                            
+                                @foreach ($productDetails->multiple_images as $productImage)
+                                    <div class="item">
+                                    <a class="horizontal-thumb active" data-target="#owl-single-product" data-slide="{{$productImage->id}}" href="#slide{{$productImage->id}}">
+                                    <img class="img-responsive" width="85" alt="" src="{{  asset($productImage->photo_name)}}" data-echo="{{  asset($productImage->photo_name)}}" />
+                                    </a>
+                                </div>
+                               @endforeach
                             </div>
                             <!-- /#owl-single-product-thumbnails -->
                          </div>
@@ -401,7 +321,7 @@ function bn_price($str)
                    <!-- /.gallery-holder -->        			
                    <div class='col-sm-6 col-md-7 product-info-block'>
                       <div class="product-info">
-                         <h1 class="name">Floral Print Buttoned</h1>
+                         <h1 class="name">{{ session()->get('language') === 'bangla' ? substr($productDetails->product_name_bn,0,20) : substr($productDetails->product_name_en,0,20) }}</h1>
                          <div class="rating-reviews m-t-20">
                             <div class="row">
                                <div class="col-sm-3">
