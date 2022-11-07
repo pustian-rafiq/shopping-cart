@@ -345,7 +345,12 @@ function bn_price($str)
                                </div>
                                <div class="col-sm-9">
                                   <div class="stock-box">
-                                     <span class="value">In Stock</span>
+                                    @if ($productDetails->product_qty === 0)
+                                      <span class="value">{{ session()->get('language') === 'bangla' ? 'স্টক শেষ' : 'Stock Out' }}</span>
+                                    @else
+                                    <span class="value">{{ session()->get('language') === 'bangla' ? 'স্টক আছে' :'In Stock' }}</span>
+                                    @endif
+                                    
                                   </div>
                                </div>
                             </div>
@@ -353,15 +358,19 @@ function bn_price($str)
                          </div>
                          <!-- /.stock-container -->
                          <div class="description-container m-t-20">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                           {!! session()->get('language') === 'bangla' ? $productDetails->short_descp_bn : $productDetails->short_descp_en !!}
                          </div>
+                         @php
+                            $amount = $productDetails->selling_price - $productDetails->discount_price;
+                            $discount = ($productDetails->discount_price / $productDetails->selling_price) * 100;
+                        @endphp	
                          <!-- /.description-container -->
                          <div class="price-container info-container m-t-20">
                             <div class="row">
                                <div class="col-sm-6">
                                   <div class="price-box">
-                                     <span class="price">$800.00</span>
-                                     <span class="price-strike">$900.00</span>
+                                     <span class="price">${{ session()->get('language') === 'bangla' ? bn_price(round($amount)) : round($amount) }}</span>
+                                     <span class="price-strike">${{ session()->get('language') === 'bangla' ? bn_price(round($productDetails->selling_price)) : round($productDetails->selling_price) }}</span>
                                   </div>
                                </div>
                                <div class="col-sm-6">
@@ -425,7 +434,7 @@ function bn_price($str)
                       <div class="tab-content">
                          <div id="description" class="tab-pane in active">
                             <div class="product-tab">
-                               <p class="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.<br><br> Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                               <p class="text">{!! session()->get('language') === 'bangla' ? $productDetails->long_descp_bn : $productDetails->long_descp_en !!}</p>
                             </div>
                          </div>
                          <!-- /.tab-pane -->
