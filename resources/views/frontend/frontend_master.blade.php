@@ -9,7 +9,7 @@
       <meta name="author" content="">
       <meta name="keywords" content="MediaCenter, Template, eCommerce">
       <meta name="robots" content="all">
-      <title>Shopping Cart | Ecommerce Food Delivery</title>
+      <title>@yield('title')</title>
       <!-- Bootstrap Core CSS -->
       <link rel="stylesheet" href="{{ asset('frontend/css/bootstrap.min.css')}}">
       <!-- Customizable CSS -->

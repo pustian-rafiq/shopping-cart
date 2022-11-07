@@ -23,6 +23,13 @@ class FrontendController extends Controller
         return view('frontend.index', compact('categories','subcategories','sub_subcategories','sliders','products'));
     }
 
+    public function ProductDetails($id){
+        $productDetails = Product::findOrFail($id);
+
+        return view('frontend.product_details', compact('productDetails'));
+    }
+
+
     //Fetch all categories
     // public function getAllCategories(){
     //     $categories = Category::orderBy('category_name_en', 'ASC')->get();

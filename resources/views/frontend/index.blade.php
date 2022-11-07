@@ -1,5 +1,7 @@
 @extends('frontend.frontend_master')
 
+@section('title') Home | Shopping Cart @endsection
+
 @section('front_content')
 
 @php
@@ -13,11 +15,11 @@ function bn_price($str)
 @endphp
   <!-- ============================================== SIDEBAR ============================================== -->	
   <div class="col-xs-12 col-sm-12 col-md-3 sidebar">
-   <!-- ================================== Left sidebar start ================================== -->
-   @include("frontend.partials.left_sidebar")
-   <!-- ================================== Left sidebar end ================================== -->
-   @include("frontend.partials.left_bottom_sidebar")
-</div>
+      <!-- ================================== Left sidebar start ================================== -->
+      @include("frontend.partials.left_sidebar")
+      <!-- ================================== Left sidebar end ================================== -->
+      @include("frontend.partials.left_bottom_sidebar")
+   </div>
 
 <div class="col-xs-12 col-sm-12 col-md-9 homebanner-holder">
  @include("frontend.partials.banner_slider")
@@ -92,7 +94,7 @@ function bn_price($str)
                         <div class="product">
                            <div class="product-image">
                               <div class="image">
-                                 <a href="detail.html"><img  src="{{ asset($product->product_thambnail)}}" alt=""></a>
+                                 <a href="{{ route('product.details', $product->id) }}"><img  src="{{ asset($product->product_thambnail)}}" alt=""></a>
                               </div>
                               <!-- /.image -->		
                               @php
@@ -108,7 +110,7 @@ function bn_price($str)
                            </div>
                            <!-- /.product-image -->
                            <div class="product-info text-left">
-                              <h3 class="name"><a href="detail.html">{{ session()->get('language') === 'bangla' ? substr($product->product_name_bn,0,10) : substr($product->product_name_en,0,10) }}</a></h3>
+                              <h3 class="name"><a href="{{ route('product.details', $product->id) }}">{{ session()->get('language') === 'bangla' ? substr($product->product_name_bn,0,10) : substr($product->product_name_en,0,10) }}</a></h3>
                               <div class="rating rateit-small"></div>
                               <div class="description"></div>
                               <div class="product-price">	
@@ -236,7 +238,7 @@ function bn_price($str)
                    <!-- /.products -->
                 </div>
                 @empty
-                <span class="text-center text-danger pb-2 d-block fs-20">No Products Found!</span>
+                <span class="text-center text-danger pb-2 d-block fs-20">{{session()->get('language') === 'bangla' ? 'দুঃখিত! কোন পণ্য পাওয়া যায়নি' : 'Sorry! No Products Found!'}}</span>
                 @endforelse
 
 

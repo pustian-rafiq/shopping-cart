@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'Frontend\FrontendController@index');
+
 
 
 Auth::routes();
@@ -22,10 +22,16 @@ Auth::routes();
 
 
 // =========================Frontend routes=========================================
+Route::get('/', 'Frontend\FrontendController@index');
 
 //Language routes here
 Route::get('language/english','Frontend\LanguageController@EnglishLanguage')->name('language.english');
 Route::get('language/bangla','Frontend\LanguageController@BanglaLanguage')->name('language.bangla');
+
+//Single product routes here
+Route::get('product/details/{id}','Frontend\FrontendController@ProductDetails')->name('product.details');
+
+
 
 
 // =========================Admin routes=========================================

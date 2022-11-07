@@ -2,7 +2,9 @@
   <div class="head"><i class="icon fa fa-align-justify fa-fw"></i> {{ session()->get('language') === 'bangla' ? 'ক্যাটাগরিস' : 'Categories'}}</div>
   <nav class="yamm megamenu-horizontal" role="navigation">
      <ul class="nav">
-
+      @php
+           $categories = App\Models\Category::orderBy('category_name_en', 'ASC')->get();
+      @endphp
       @foreach ($categories as $category)
         <li class="dropdown menu-item">
            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon {{$category->category_icon}}" aria-hidden="true"></i>
